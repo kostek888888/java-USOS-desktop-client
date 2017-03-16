@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Map;
 
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
@@ -29,21 +30,37 @@ public class Main {
 		System.out.println(logFormSubmit);
 		
 		
-		Document doc = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login")
+		Response resLogowanie = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login;jsessionid="+jSessionIdCookie)
 		.userAgent("Mozilla")
 		.cookie("JSESSIONID", jSessionIdCookie)
 		.data("username", "94070910750", 
-				"password", "xxx",
+				"password", "qwertyqwerty",
 				"_eventId", logFormEventId,
 				"lt", logFormLt,
 				"execution", logFormExecution,
 				"submit", logFormSubmit
 				)
-		.post();
+		.timeout(3000)
+		.execute();
+		
+		String castgcCookie = resLogowanie.cookie("CASTGC");
+
+		Document docLogWynik = resLogowanie.parse();
+
+		System.out.println("CASTGC: "+castgcCookie);
+		
+		
+		
+		Document docOceny = Jsoup.connect("https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index")
+				.cookie("JSESSIONID", jSessionIdCookie)
+				.cookie("CASTGC", castgcCookie)
+				.timeout(3000)
+				.get();
 		
 		
 		//Elements newsHeadlines = doc.select("#mp-itn b a");
-		System.out.println(doc.html());
+		//System.out.println(docLogWynik.html());
+		System.out.println(docOceny.html());
 		//System.out.println(doc.);
 		
 	}
