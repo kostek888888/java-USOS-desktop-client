@@ -12,16 +12,18 @@ public class UsosMarksManager {
 	
 	
 	public void getMarks(Map<String, String> cookies) throws IOException {
-		Document marksDocument = Jsoup.connect(MARKS_URL)
+		
+		
+		Document marksDocument = Jsoup.connect("https://usosweb.tu.kielce.pl/kontroler.php?_action=katalog2/index")
 		.cookies(cookies)
 		//.referrer("")
 		.followRedirects(false)
 		.userAgent(this.userAgent)
-		.header("Host", "cas.usos.tu.kielce.pl")
+		.header("Host", "usosweb.tu.kielce.pl")
 		.header("Upgrade-Insecure-Requests", "1")
 		.get();
 		
-		System.out.println(marksDocument.toString());
+		//System.out.println(marksDocument.toString());
 		
 	}
 	

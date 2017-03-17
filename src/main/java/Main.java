@@ -15,7 +15,7 @@ public class Main {
 
 		
 		usosManager.login("94070910750", "qwertyqwerty");
-		usosManager.getMarks();
+		//usosManager.getMarks();
 		
 		
 		
