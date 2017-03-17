@@ -109,9 +109,11 @@ public class UsosLoginManager {
 				System.out.println("Otwarcie ocen");
 				this.displayDataResponse(resOceny);
 				
+				String PHPSESSID = resOceny.cookie("PHPSESSID");
+				
 				//  ================ przekierowanie 2
 				
-				Response przekierowanie1 = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login")
+				Response przekierowanie2 = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login")
 						.userAgent(this.userAgent)
 						.cookie("JSESSIONID", jSessionIdCookie)
 						.cookie("CASTGC", castgcCookie)
@@ -125,10 +127,32 @@ public class UsosLoginManager {
 						.execute();
 				
 				System.out.println("przekierowanie 2");
-				this.displayDataResponse(przekierowanie1);
+				this.displayDataResponse(przekierowanie2);
 				
 			//  ================ przekierowanie 3 z ticketem
+				Response przekierowanie3ticket = Jsoup.connect(przekierowanie2.header("Location"))
+						.userAgent(this.userAgent)
+						.header("Host", "usosweb.tu.kielce.pl")
+						.header("Upgrade-Insecure-Requests", "1")
+						.cookie("PHPSESSID", PHPSESSID)
+						.followRedirects(false) 
+						.execute();
 				
+				System.out.println("przekierowanie 3 z ticketem");
+				this.displayDataResponse(przekierowanie3ticket);
+				
+				// ============= wchodzimy na oceny !!!!!!!!!
+				
+				Response oceny = Jsoup.connect(przekierowanie3ticket.header("Location"))
+						.userAgent(this.userAgent)
+						.header("Host", "usosweb.tu.kielce.pl")
+						.header("Upgrade-Insecure-Requests", "1")
+						.cookie("PHPSESSID", PHPSESSID)
+						.followRedirects(false) 
+						.execute();
+				
+				
+				System.out.println(oceny.parse().toString());
 				
 				/*
 				// ==================== otwieramy 302
