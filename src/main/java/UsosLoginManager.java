@@ -3,6 +3,8 @@ import org.jsoup.Connection.Response;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.jsoup.Connection.Method;
@@ -17,26 +19,44 @@ public class UsosLoginManager {
 	protected String castgcCookie;
 	protected String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
 	
-	protected void openPageWithRedirect(String url, Map<String, String> cookies, String ref) throws IOException
+	Map<String, String> cookies;
+	
+	UsosLoginManager() {
+		cookies = new HashMap<String, String>();
+	}
+	
+	protected void openPageWithRedirect(String url, Map<String, String> cookiesParam, String ref) throws IOException
 	{
-		System.out.println("Otwieram: "+ url);
 		
-		Response respose = Jsoup.connect(url)
+		this.cookies.putAll(cookiesParam);
+		
+		Response response = Jsoup.connect(url)
 				.userAgent(this.userAgent)
-				.cookies(cookies)
+				.cookies(cookiesParam)
 				.followRedirects(false)
 				.referrer(ref)
 				.execute();
 		
-		System.out.println("status code: "+respose.statusCode());
-		System.out.println(respose.parse().toString());
-		System.out.println("reffers: "+ respose.header("Location"));
+		
+		this.cookies.putAll(response.cookies());
 		
 		
+		System.out.println(response.parse().toString());
+		
+		if(response.statusCode() == 301 || response.statusCode() == 302) {
+			
+			this.openPageWithRedirect(response.url().toString()+"/"+response.header("Location"), response.cookies(), url);
+		}
 	}
 	
-	
-	public void login(String login, String pass) throws IOException {
+	/**
+	 * 
+	 * @param login
+	 * @param pass
+	 * @return ciasteczka
+	 * @throws IOException
+	 */
+	public Map<String, String> login(String login, String pass) throws IOException {
 		
 				Response res = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login?service=https%3A%2F%2Fusosweb.tu.kielce.pl%2Fkontroler.php%3F_action%3Dlogowaniecas%2Findex&locale=pl")
 						.userAgent(this.userAgent)
@@ -46,18 +66,10 @@ public class UsosLoginManager {
 				
 				Document logStartDocument = res.parse();
 				
-				
-				
 				String logFormEventId = logStartDocument.select("[name='_eventId']").attr("value");
 				String logFormLt = logStartDocument.select("[name='lt']").attr("value");
 				String logFormExecution = logStartDocument.select("[name='execution']").attr("value");
-				String logFormSubmit = "ZALOGUJ";
-				
-				System.out.println(logFormEventId);
-				System.out.println(logFormLt);
-				System.out.println(logFormExecution);
-				System.out.println(logFormSubmit);
-				
+				String logFormSubmit = "ZALOGUJ";				
 				
 				Response resLogowanie = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login?service=https%3A%2F%2Fusosweb.tu.kielce.pl%2Fkontroler.php%3F_action%3Dlogowaniecas%2Findex&locale=pl")
 				.userAgent(this.userAgent)
@@ -72,38 +84,15 @@ public class UsosLoginManager {
 				.header("Host", "cas.usos.tu.kielce.pl")
 				.header("Upgrade-Insecure-Requests", "1")
 				.referrer("https://cas.usos.tu.kielce.pl/cas/login")
-				
-				
 				.timeout(3000)
 				.execute();
-				
-				System.out.println("Status html: "+resLogowanie.statusCode());
-				System.out.println("jSessionIdCookie: "+ jSessionIdCookie);
 
 				String castgcCookie = resLogowanie.cookie("CASTGC");
-
 				
-				
-				Document docLogWynik = resLogowanie.parse();
-				System.out.println(docLogWynik.toString());
-				System.out.println("CASTGC: "+castgcCookie);
-				
-				Map<String, String> cookies = resLogowanie.cookies();
-				
-				this.openPageWithRedirect("https://usosweb.tu.kielce.pl", cookies, resLogowanie.url().toString());
-				
-				/*
-				Document docOceny = Jsoup.connect("https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index")
-						.cookie("JSESSIONID", jSessionIdCookie)
-						.cookie("CASTGC", castgcCookie)
-						.timeout(3000)
-						.get();
-				
-				
-				//Elements newsHeadlines = doc.select("#mp-itn b a");
-				//System.out.println(docLogWynik.html());
-				System.out.println(docOceny.html());
-				//System.out.println(doc.);
-				*/
+				this.openPageWithRedirect("https://usosweb.tu.kielce.pl", resLogowanie.cookies(), resLogowanie.url().toString());
+								
+				return this.cookies;
 	}
+	
+	
 }

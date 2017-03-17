@@ -11,10 +11,11 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
+		UsosManager usosManager = new UsosManager();
+
 		
-		UsosLoginManager usosLoginManager = new UsosLoginManager();
-		usosLoginManager.login("94070910750", "qwertyqwerty");
-		
+		usosManager.login("94070910750", "qwertyqwerty");
+		usosManager.getMarks();
 		
 		
 		
