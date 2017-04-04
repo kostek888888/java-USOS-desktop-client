@@ -1,3 +1,4 @@
+package usos;
 import org.jsoup.Jsoup;
 import org.jsoup.Connection.Response;
 import org.jsoup.nodes.Document;
@@ -14,43 +15,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+
+
 public class UsosLoginManager {
 	
-	protected String jSessionIdCookie;
-	protected String castgcCookie;
-	protected String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
-	
-	Map<String, String> cookies;
+	private String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+	private String sessionId = null;
 	
 	UsosLoginManager() {
-		cookies = new HashMap<String, String>();
+		
 	}
-	
-	/*
-	protected void openPageWithRedirect(String url, Map<String, String> cookiesParam, String ref) throws IOException
-	{
-		
-		this.cookies.putAll(cookiesParam);
-		
-		Response response = Jsoup.connect(url)
-				.userAgent(this.userAgent)
-				.cookies(cookiesParam)
-				.followRedirects(false)
-				.referrer(ref)
-				.execute();
-		
-		
-		this.displayDataResponse(response);
-		
-		this.cookies.putAll(response.cookies());
-		
-		
-		if(response.statusCode() == 301 || response.statusCode() == 302) {
-			
-			this.openPageWithRedirect(response.url().toString()+"/"+response.header("Location"), this.cookies, url);
-		}
-	}
-	*/
 	
 	/**
 	 * 
@@ -58,8 +32,9 @@ public class UsosLoginManager {
 	 * @param pass
 	 * @return ciasteczka
 	 * @throws IOException
+	 * @throws LoginInvalidCredentialsException 
 	 */
-	public Map<String, String> login(String login, String pass) throws IOException {
+	public void login(String login, String pass) throws IOException, LoginInvalidCredentialsException {
 		
 				Response res = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login")
 						.userAgent(this.userAgent)
@@ -92,10 +67,14 @@ public class UsosLoginManager {
 				.timeout(3000)
 				.execute();
 				
-				System.out.println(resLogowanie.parse());
-				this.displayDataResponse(resLogowanie);
-				
 				String castgcCookie = resLogowanie.cookie("CASTGC");
+				
+				//System.out.println(resLogowanie.parse());
+				
+				
+				if(resLogowanie.parse().select("#page > div.text > h2").text().trim() != "Udane logowanie") {
+					throw new LoginInvalidCredentialsException();
+				}
 				
 				// ================ otwieramy ocenki
 				Response resOceny = Jsoup.connect("https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index")
@@ -105,14 +84,10 @@ public class UsosLoginManager {
 						.header("Upgrade-Insecure-Requests", "1")
 						.followRedirects(false)
 						.execute();
-				
-				System.out.println("Otwarcie ocen");
-				this.displayDataResponse(resOceny);
-				
-				String PHPSESSID = resOceny.cookie("PHPSESSID");
+								
+				this.sessionId = resOceny.cookie("PHPSESSID");
 				
 				//  ================ przekierowanie 2
-				
 				Response przekierowanie2 = Jsoup.connect("https://cas.usos.tu.kielce.pl/cas/login")
 						.userAgent(this.userAgent)
 						.cookie("JSESSIONID", jSessionIdCookie)
@@ -126,20 +101,14 @@ public class UsosLoginManager {
 						.method(Connection.Method.GET)
 						.execute();
 				
-				System.out.println("przekierowanie 2");
-				this.displayDataResponse(przekierowanie2);
-				
 			//  ================ przekierowanie 3 z ticketem
 				Response przekierowanie3ticket = Jsoup.connect(przekierowanie2.header("Location"))
 						.userAgent(this.userAgent)
 						.header("Host", "usosweb.tu.kielce.pl")
 						.header("Upgrade-Insecure-Requests", "1")
-						.cookie("PHPSESSID", PHPSESSID)
+						.cookie("PHPSESSID", this.sessionId)
 						.followRedirects(false) 
 						.execute();
-				
-				System.out.println("przekierowanie 3 z ticketem");
-				this.displayDataResponse(przekierowanie3ticket);
 				
 				// ============= wchodzimy na oceny !!!!!!!!!
 				
@@ -147,27 +116,19 @@ public class UsosLoginManager {
 						.userAgent(this.userAgent)
 						.header("Host", "usosweb.tu.kielce.pl")
 						.header("Upgrade-Insecure-Requests", "1")
-						.cookie("PHPSESSID", PHPSESSID)
+						.cookie("PHPSESSID", this.sessionId)
 						.followRedirects(false) 
 						.execute();
 				
 				
-				System.out.println(oceny.parse().toString());
+				Document doc = oceny.parse();
 				
-				/*
-				// ==================== otwieramy 302
-				Response res302Ticket = Jsoup.connect(resLogowanie.header("Location"))
-						.followRedirects(false)
-						.userAgent(this.userAgent)
-						.header("Upgrade-Insecure-Requests", "1")
-						.header("Host", "usosweb.tu.kielce.pl")
-						.referrer(resLogowanie.url().toString())
-						.execute();
-				
-				this.displayDataResponse(res302Ticket);
-				
-				*/
-				return null;
+				Elements usernameFromHtml = doc.select("#casmenu > table > tbody > tr > td:nth-child(2) > b");
+				//return (usernameFromHtml == null) ? false : true;
+	}
+	
+	public String getSessionId() {
+		return this.sessionId;
 	}
 	
 	protected void displayDataResponse(Response response) {
@@ -179,11 +140,7 @@ public class UsosLoginManager {
 			System.out.println("Location : "+response.header("Location"));
 		}
 		
-		
-		
 		System.out.println(" ===================== ");
-		
-		
 	}
 	
 	
