@@ -69,12 +69,11 @@ public class UsosLoginManager {
 				
 				String castgcCookie = resLogowanie.cookie("CASTGC");
 				
-				//System.out.println(resLogowanie.parse());
-				
-				
-				if(resLogowanie.parse().select("#page > div.text > h2").text().trim() != "Udane logowanie") {
+				System.out.println(resLogowanie.parse());
+
+				if(resLogowanie.parse().select("#page > div.text > h2").text().trim().equals("Udane logowanie") == false) {
 					throw new LoginInvalidCredentialsException();
-				}
+				} 
 				
 				// ================ otwieramy ocenki
 				Response resOceny = Jsoup.connect("https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index")
@@ -110,21 +109,6 @@ public class UsosLoginManager {
 						.followRedirects(false) 
 						.execute();
 				
-				// ============= wchodzimy na oceny !!!!!!!!!
-				
-				Response oceny = Jsoup.connect(przekierowanie3ticket.header("Location"))
-						.userAgent(this.userAgent)
-						.header("Host", "usosweb.tu.kielce.pl")
-						.header("Upgrade-Insecure-Requests", "1")
-						.cookie("PHPSESSID", this.sessionId)
-						.followRedirects(false) 
-						.execute();
-				
-				
-				Document doc = oceny.parse();
-				
-				Elements usernameFromHtml = doc.select("#casmenu > table > tbody > tr > td:nth-child(2) > b");
-				//return (usernameFromHtml == null) ? false : true;
 	}
 	
 	public String getSessionId() {
@@ -134,7 +118,7 @@ public class UsosLoginManager {
 	protected void displayDataResponse(Response response) {
 		System.out.println("URL : "+response.url());
 		System.out.println("HTML CODE: "+response.statusCode());
-		System.out.println("Coockies : "+response.cookies());
+		System.out.println("Cookies : "+response.cookies());
 		
 		if(response.statusCode() == 301 || response.statusCode() == 302) {
 			System.out.println("Location : "+response.header("Location"));
