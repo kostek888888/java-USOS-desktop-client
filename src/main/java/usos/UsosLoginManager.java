@@ -68,8 +68,6 @@ public class UsosLoginManager {
 				.execute();
 				
 				String castgcCookie = resLogowanie.cookie("CASTGC");
-				
-				System.out.println(resLogowanie.parse());
 
 				if(resLogowanie.parse().select("#page > div.text > h2").text().trim().equals("Udane logowanie") == false) {
 					throw new LoginInvalidCredentialsException();

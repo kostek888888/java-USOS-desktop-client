@@ -19,6 +19,7 @@ public class Main {
 
 		try {
 			usosManager.login("94070910750", "qwertyqwerty");
+			System.out.println("Zalogowano");
 			usosManager.getMarks();
 		} catch (LoginInvalidCredentialsException e) {
 			System.out.println("Niepoprawne dane logowania");
