@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import usos.helper.mark.Mark;
-import usos.helper.mark.TypeOfClass;
 
 public class Subject {
 	

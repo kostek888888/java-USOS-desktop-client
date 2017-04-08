@@ -13,6 +13,7 @@ public class MarkFactory {
 		markString = markString.replace("(", "");
 		markString = markString.replace(")", "");
 		markString = markString.replace(",", ".");
+		markString = markString.replace(" ", "");
 		markString = markString.trim();
 		
 		if(markString.equals("NB")) {

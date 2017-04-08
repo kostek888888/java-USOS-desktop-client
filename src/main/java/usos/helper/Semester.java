@@ -3,8 +3,6 @@ package usos.helper;
 import java.util.ArrayList;
 import java.util.List;
 
-import usos.helper.mark.TypeOfClass;
-
 public class Semester {
 	
 	private List<Subject> subjects = new ArrayList<Subject>();

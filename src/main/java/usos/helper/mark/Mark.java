@@ -9,7 +9,7 @@ public class Mark {
 	private MarkStrategyInterface markStrategy;
 	private BigDecimal numeralMark;
 	
-	Mark(MarkStrategyInterface markStrategy) {
+	public Mark(MarkStrategyInterface markStrategy) {
 		this.markStrategy = markStrategy;
 	}
 	
@@ -23,6 +23,10 @@ public class Mark {
 	
 	public BigDecimal getValueMark() {
 		return markStrategy.getValueMark(numeralMark);
+	}
+	
+	public MarkStrategyInterface getMarkStrategy() {
+		return this.markStrategy;
 	}
 	
 }

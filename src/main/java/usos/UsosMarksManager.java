@@ -11,9 +11,9 @@ import org.jsoup.select.Elements;
 
 import usos.helper.Semester;
 import usos.helper.Subject;
+import usos.helper.TypeOfClass;
 import usos.helper.mark.Mark;
 import usos.helper.mark.MarkFactory;
-import usos.helper.mark.TypeOfClass;
 
 public class UsosMarksManager {
 	
