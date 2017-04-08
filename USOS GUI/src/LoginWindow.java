@@ -2,6 +2,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import java.awt.event.KeyEvent;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
@@ -17,6 +18,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.TraverseListener;
+import org.eclipse.swt.events.TraverseEvent;
 
 public class LoginWindow {
 	private Text loginText;
@@ -53,6 +56,34 @@ public class LoginWindow {
 		loginText.setBounds(103, 336, 173, 21);
 		
 		passText = new Text(shell, SWT.BORDER | SWT.PASSWORD);
+		passText.addTraverseListener(new TraverseListener() {
+			public void keyTraversed(TraverseEvent arg0) {
+				if(arg0.detail == SWT.TRAVERSE_RETURN)
+				{
+					String login = loginText.getText();
+					String pass = passText.getText();
+					if(login.length()>0 && pass.length()>0 && login.compareTo("login")==0 && pass.compareTo("pass")==0 )   ///zwraca 0 jak takie same <>0 jak rozne
+					{
+						MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
+					    String msg = "Successful login";
+					    msgBox.setMessage(msg);
+					    msgBox.open();
+					    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+					      
+					    ///przejdz do MainWindow
+					    MainWindow mainWindowObj = new MainWindow();
+					}
+					else
+					{
+						 MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_WARNING);
+						 String msg = "login: login \n"
+				      		+ "pass: pass";
+						 msgBox.setMessage(msg);
+						 msgBox.open();
+					}
+				}
+			}
+		});
 		passText.setBounds(103, 373, 173, 21);
 		
 		Label loginLabel = new Label(shell, SWT.NONE);

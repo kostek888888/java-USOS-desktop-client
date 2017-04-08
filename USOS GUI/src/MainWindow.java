@@ -3,12 +3,17 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Menu;
+
+import java.awt.event.KeyEvent;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.TraverseEvent;
+import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.Label;
@@ -137,6 +142,17 @@ public class MainWindow {
 			text = new Text(planComposite, SWT.BORDER);
 			text.setBounds(65, 5, rect.width-75-20-75-75-5, 21); ///width_adresB+, szerokosc textu = szerokosc formatki - szerokosc gobutton - szerokosc refresh button - odstep 
 			
+			text.addTraverseListener(new TraverseListener() {
+				public void keyTraversed(TraverseEvent arg0) {
+					if(arg0.detail == SWT.TRAVERSE_RETURN)
+					{
+						String go_address = text.getText();
+						if(!go_address.isEmpty()) ///jesli pole adresu nie jest puste	
+								browser.setUrl(go_address);	
+					}
+				}
+			});
+			
 			///przejscie pod podany adres
 			Button goB = new Button(planComposite, SWT.NONE);
 			goB.setBounds((rect.width)-175, 3, 75, 25);
@@ -151,9 +167,10 @@ public class MainWindow {
 					}			
 				}
 			});
-
-			
+				
 			Button refreshB = new Button(planComposite, SWT.NONE);
+			refreshB.setBounds((rect.width)-75-23, 3, 75, 25);
+			refreshB.setText("Refresh");
 			refreshB.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseDown(MouseEvent e) {
@@ -164,17 +181,37 @@ public class MainWindow {
 					}		
 				}
 			});
-			refreshB.setBounds((rect.width)-75-23, 3, 75, 25);
-			refreshB.setText("Refresh");
+			
+
+			
+
 			
 			
-			
+
 			
 			
 
 		shell.open();
 		browser.setUrl("https://pl.vichan.net/cp/src/1tnuu5gt.vichan.jpg");
 		text.setText("https://pl.vichan.net/cp/src/1tnuu5gt.vichan.jpg");
+		
+		refreshB.addTraverseListener(new TraverseListener() {
+			public void keyTraversed(TraverseEvent arg0) {
+				
+			}
+		});
+		
+		goB.addTraverseListener(new TraverseListener() {
+			public void keyTraversed(TraverseEvent arg0) {
+				if(arg0.hashCode() == KeyEvent.VK_ENTER)
+				{
+					String go_address = text.getText();
+					if(!go_address.isEmpty()) ///jesli pole adresu nie jest puste	
+							browser.setUrl(go_address);	
+				}
+			}
+		});
+		
 		
 		shell.layout();
 		while (!shell.isDisposed()) {
