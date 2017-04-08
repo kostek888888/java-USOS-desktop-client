@@ -16,16 +16,8 @@ public class UsosManager {
 	}
 	
 	public void login(String login, String pass) throws IOException, LoginInvalidCredentialsException {
-		
-		try {
 			usosLoginManager.login(login, pass);
 			this.sessionId = usosLoginManager.getSessionId();
-		} catch (LoginInvalidCredentialsException e) {
-			throw e;
-		}
-		
-		
-		
 	}
 	
 	public void logout() {
