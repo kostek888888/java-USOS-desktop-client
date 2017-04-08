@@ -127,13 +127,8 @@ public class MainWindow {
 			Composite planComposite = new Composite(tabFolder, SWT.NONE);
 			planTabItem.setControl(planComposite);
 			
-			///okno przegladarki
 			
-			final Browser browser = new Browser(planComposite, SWT.NONE);
-			browser.setBounds(1, 44, rect.width-20, rect.height-44-60);
-		
-	
-			
+			///napis adres
 			Label addressL = new Label(planComposite, SWT.NONE);
 			addressL.setBounds(10, 8, 51, 18);
 			addressL.setText("Address");
@@ -142,6 +137,24 @@ public class MainWindow {
 			text = new Text(planComposite, SWT.BORDER);
 			text.setBounds(65, 5, rect.width-75-20-75-75-5, 21); ///width_adresB+, szerokosc textu = szerokosc formatki - szerokosc gobutton - szerokosc refresh button - odstep 
 			
+			
+			
+			
+			///okno przegladarki
+			
+			final Browser browser = new Browser(planComposite, SWT.NONE);
+			browser.setBounds(1, 44, rect.width-20, rect.height-44-60);
+			browser.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseUp(MouseEvent e) {
+					///odswiezanie adresu po kliknieciu gdzies na stronie
+					String address = browser.getUrl();
+					text.setText(address);
+				}
+			});
+			
+			
+			///przejscie do adresu po wcisnieciu enter z kliknietym polem do wpisywania
 			text.addTraverseListener(new TraverseListener() {
 				public void keyTraversed(TraverseEvent arg0) {
 					if(arg0.detail == SWT.TRAVERSE_RETURN)
@@ -152,8 +165,11 @@ public class MainWindow {
 					}
 				}
 			});
+		
+	
 			
-			///przejscie pod podany adres
+			
+			///przejscie pod podany adres po wcisnieciu przycisku go
 			Button goB = new Button(planComposite, SWT.NONE);
 			goB.setBounds((rect.width)-175, 3, 75, 25);
 			goB.setText("Go");
@@ -168,6 +184,7 @@ public class MainWindow {
 				}
 			});
 				
+			///odswiezanie po wcisnieciu przycisku refresh
 			Button refreshB = new Button(planComposite, SWT.NONE);
 			refreshB.setBounds((rect.width)-75-23, 3, 75, 25);
 			refreshB.setText("Refresh");
@@ -183,36 +200,11 @@ public class MainWindow {
 			});
 			
 
-			
-
-			
-			
-
-			
-			
-
 		shell.open();
-		browser.setUrl("https://pl.vichan.net/cp/src/1tnuu5gt.vichan.jpg");
-		text.setText("https://pl.vichan.net/cp/src/1tnuu5gt.vichan.jpg");
 		
-		refreshB.addTraverseListener(new TraverseListener() {
-			public void keyTraversed(TraverseEvent arg0) {
+		browser.setUrl("plany.tu.kielce.pl"); ///strona startowa
+		text.setText("www.plany.tu.kielce.pl");
 				
-			}
-		});
-		
-		goB.addTraverseListener(new TraverseListener() {
-			public void keyTraversed(TraverseEvent arg0) {
-				if(arg0.hashCode() == KeyEvent.VK_ENTER)
-				{
-					String go_address = text.getText();
-					if(!go_address.isEmpty()) ///jesli pole adresu nie jest puste	
-							browser.setUrl(go_address);	
-				}
-			}
-		});
-		
-		
 		shell.layout();
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
