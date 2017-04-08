@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import usos.helper.mark.strategy.NbMarkStrategy;
 import usos.helper.mark.strategy.NumeralMarkStrategy;
+import usos.helper.mark.strategy.NzalMarkStrategy;
 import usos.helper.mark.strategy.ZalMarkStrategy;
 
 public class MarkFactory {
@@ -20,6 +21,8 @@ public class MarkFactory {
 			return new Mark(new NbMarkStrategy());
 		} else if(markString.equals("ZAL")) {
 			return new Mark(new ZalMarkStrategy());
+		} else if(markString.equals("NZAL")) {
+			return new Mark(new NzalMarkStrategy());
 		} else {
 			Mark mark = new Mark(new NumeralMarkStrategy());
 			mark.setNumeralMark(new BigDecimal(markString));
