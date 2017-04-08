@@ -13,6 +13,9 @@ import org.eclipse.swt.events.MouseTrackAdapter;
 
 public class AuthorsWindow {
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	AuthorsWindow()
 	{
 		runAuthorsWindow();
@@ -148,12 +151,12 @@ public class AuthorsWindow {
 		
 		///projekt link
 		Label lblUsosMagnagerOn = new Label(shell, SWT.NONE);
-		lblUsosMagnagerOn.setBounds(24, 178, 187, 15);
-		lblUsosMagnagerOn.setText("Visit Usos Magnager Project site on");
+		lblUsosMagnagerOn.setBounds(24, 178, 195, 15);
+		lblUsosMagnagerOn.setText("Visit USOS Manager Project site on");
 		
 		Label project_link = new Label(shell, SWT.NONE);
 		project_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
-		project_link.setBounds(217, 178, 55, 15);
+		project_link.setBounds(225, 178, 47, 15);
 		project_link.setText("Github");
 		project_link.addMouseTrackListener(new MouseTrackAdapter() {
 			@Override
@@ -182,9 +185,5 @@ public class AuthorsWindow {
 		return 1;
 	}
 	
-	public static void main(String[] args) {
-
-		//AuthorsWindow authorsObj = new AuthorsWindow();
-	}
 
 }

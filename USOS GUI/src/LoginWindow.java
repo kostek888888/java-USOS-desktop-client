@@ -37,6 +37,7 @@ public class LoginWindow {
 		Shell shell = new Shell();
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		shell.setSize(355, 526);
+		shell.setMinimumSize(355, 526);
 		shell.setText("USOS Manager Login");
 
 		///apka odpali sie na pierwszym monitorze na srodku ekranu
@@ -77,7 +78,7 @@ public class LoginWindow {
 					{
 						signInButton.setEnabled(false);   ///dezaktywuj przycisk
 						  MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
-					      String msg = "Zalogowany";
+					      String msg = "Successful login";
 					      msgBox.setMessage(msg);
 					      msgBox.open();
 					      shell.dispose();   ///zalogowano wy³¹cz okno Logowania
