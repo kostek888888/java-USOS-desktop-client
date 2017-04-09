@@ -28,12 +28,7 @@
     </plugins>
   </build>
   <dependencies>
-	 <dependency>
-         <groupId>eclipse.SWT</groupId>
-         <artifactId>SWT</artifactId>
-         <scope>system</scope>
-	 <version>chuj.wie.jaka</version>
-         <systemPath>${basedir}\swing2swt.jar</systemPath>
-      </dependency>		
+
   </dependencies>
+
 </project>

@@ -2,8 +2,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import java.awt.event.KeyEvent;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
@@ -42,6 +40,7 @@ public class LoginWindow {
 		shell.setSize(355, 526);
 		shell.setMinimumSize(355, 526);
 		shell.setText("USOS Manager Login");
+		shell.setImage(new Image(display, "icon/favicon-0.png"));
 
 		///apka odpali sie na pierwszym monitorze na srodku ekranu
 		Monitor primary = display.getPrimaryMonitor ();
@@ -62,6 +61,7 @@ public class LoginWindow {
 				{
 					String login = loginText.getText();
 					String pass = passText.getText();
+					/*
 					if(login.length()>0 && pass.length()>0 && login.compareTo("login")==0 && pass.compareTo("pass")==0 )   ///zwraca 0 jak takie same <>0 jak rozne
 					{
 						MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
@@ -71,7 +71,7 @@ public class LoginWindow {
 					    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
 					      
 					    ///przejdz do MainWindow
-					    MainWindow mainWindowObj = new MainWindow();
+					    MainWindow mainWindowObj = new MainWindow(login);
 					}
 					else
 					{
@@ -81,6 +81,17 @@ public class LoginWindow {
 						 msgBox.setMessage(msg);
 						 msgBox.open();
 					}
+					*/
+					
+					MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
+				    String msg = "Successful login";
+				    msgBox.setMessage(msg);
+				    msgBox.open();
+				    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+				      
+				    ///przejdz do MainWindow
+				    MainWindow mainWindowObj = new MainWindow(login);
+					
 				}
 			}
 		});
@@ -105,6 +116,7 @@ public class LoginWindow {
 				public void mouseUp(MouseEvent e) {
 					String login = loginText.getText();
 					String pass = passText.getText();
+					/*
 					if(login.length()>0 && pass.length()>0 && login.compareTo("login")==0 && pass.compareTo("pass")==0 )   ///zwraca 0 jak takie same <>0 jak rozne
 					{
 						signInButton.setEnabled(false);   ///dezaktywuj przycisk
@@ -115,7 +127,7 @@ public class LoginWindow {
 					      shell.dispose();   ///zalogowano wy³¹cz okno Logowania
 					      
 					      ///przejdz do MainWindow
-					      MainWindow mainWindowObj = new MainWindow();
+					      MainWindow mainWindowObj = new MainWindow(login);
 					}
 					else
 					{
@@ -125,6 +137,16 @@ public class LoginWindow {
 						 msgBox.setMessage(msg);
 						 msgBox.open();
 					}
+					*/
+					
+					MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
+				    String msg = "Successful login";
+				    msgBox.setMessage(msg);
+				    msgBox.open();
+				    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+				      
+				    ///przejdz do MainWindow
+				    MainWindow mainWindowObj = new MainWindow(login);
 				}
 			});
 
@@ -185,6 +207,7 @@ public class LoginWindow {
 				display.sleep();
 			}
 		}
+		 
 	}
 
 

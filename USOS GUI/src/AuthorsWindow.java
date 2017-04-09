@@ -1,4 +1,5 @@
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
@@ -27,11 +28,13 @@ public class AuthorsWindow {
 		
 		
 		Display display = Display.getDefault();
-		Shell shell = new Shell();
-		shell.setSize(298, 300);
+		Shell shell = new Shell(SWT.CLOSE | SWT.TITLE);
+		shell.setSize(298, 266);
 		shell.setText("Authors");
-		 final Cursor cursor = new Cursor(display, SWT.CURSOR_HAND); ///zmiana kursora przy najechaniu na link
+		final Cursor cursor = new Cursor(display, SWT.CURSOR_HAND); ///zmiana kursora przy najechaniu na link
+		shell.setImage(new Image(display, "icon/favicon-0.png"));
 		
+		 
 		///apka odpali sie na pierwszym monitorze na srodku ekranu
 		Monitor primary = display.getPrimaryMonitor ();
 		Rectangle bounds = primary.getBounds ();
@@ -151,12 +154,12 @@ public class AuthorsWindow {
 		
 		///projekt link
 		Label lblUsosMagnagerOn = new Label(shell, SWT.NONE);
-		lblUsosMagnagerOn.setBounds(24, 178, 195, 15);
-		lblUsosMagnagerOn.setText("Visit USOS Manager Project site on");
+		lblUsosMagnagerOn.setBounds(24, 178, 188, 15);
+		lblUsosMagnagerOn.setText("Visit USOS Manager project site on");
 		
 		Label project_link = new Label(shell, SWT.NONE);
 		project_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
-		project_link.setBounds(225, 178, 47, 15);
+		project_link.setBounds(215, 178, 47, 15);
 		project_link.setText("Github");
 		project_link.addMouseTrackListener(new MouseTrackAdapter() {
 			@Override
