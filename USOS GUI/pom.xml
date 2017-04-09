@@ -3,6 +3,9 @@
   <groupId>projekt_gui</groupId>
   <artifactId>projekt_gui</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>USOS GUI </name>
+
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -24,4 +27,13 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+	 <dependency>
+         <groupId>eclipse.SWT</groupId>
+         <artifactId>SWT</artifactId>
+         <scope>system</scope>
+	 <version>chuj.wie.jaka</version>
+         <systemPath>${basedir}\swing2swt.jar</systemPath>
+      </dependency>		
+  </dependencies>
 </project>
