@@ -7,14 +7,20 @@ import org.junit.Test;
 
 public class SemesterTest {
 	
-	Semester semester = new Semester();
-	
+	static Semester semester = new Semester();
+	static Subject testSubject;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		testSubject = new Subject();
+		testSubject.setName("trooooo");
 	}
 
 	@Test
 	public void testGetSubjects() {
+		assertNotNull(semester.getSubjects());
+		assertEquals(semester.getSubjects().size(), 0);
+		semester.addSubject(testSubject);
+		assertEquals(semester.getSubjects().size(), 1);
 		
 	}
 
