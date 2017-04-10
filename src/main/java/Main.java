@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import gui.LoginWindow;
 import usos.LoginInvalidCredentialsException;
 import usos.UsosManager;
 
@@ -14,6 +15,10 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
+		LoginWindow loginObj = new LoginWindow();
+		
+		
+		/*
 		UsosManager usosManager = new UsosManager();
 
 
@@ -24,7 +29,7 @@ public class Main {
 		} catch (LoginInvalidCredentialsException e) {
 			System.out.println("Niepoprawne dane logowania");
 		}
-		
+		*/
 
 		
 		

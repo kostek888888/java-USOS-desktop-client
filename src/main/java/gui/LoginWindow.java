@@ -1,3 +1,5 @@
+package gui;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -23,7 +25,7 @@ public class LoginWindow {
 	private Text loginText;
 	private Text passText;
 	
-	LoginWindow()
+	public LoginWindow()
 	{
 		runLoginWindow();
 	}
@@ -35,7 +37,7 @@ public class LoginWindow {
 		
 		
 		Display display = Display.getDefault();
-		Shell shell = new Shell();
+		final Shell shell = new Shell();
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		shell.setSize(355, 526);
 		shell.setMinimumSize(355, 526);
@@ -68,7 +70,7 @@ public class LoginWindow {
 					    String msg = "Successful login";
 					    msgBox.setMessage(msg);
 					    msgBox.open();
-					    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+					    shell.dispose();   ///zalogowano wyï¿½ï¿½cz okno Logowania
 					      
 					    ///przejdz do MainWindow
 					    MainWindow mainWindowObj = new MainWindow(login);
@@ -87,7 +89,7 @@ public class LoginWindow {
 				    String msg = "Successful login";
 				    msgBox.setMessage(msg);
 				    msgBox.open();
-				    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+				    shell.dispose();   ///zalogowano wyï¿½ï¿½cz okno Logowania
 				      
 				    ///przejdz do MainWindow
 				    MainWindow mainWindowObj = new MainWindow(login);
@@ -124,7 +126,7 @@ public class LoginWindow {
 					      String msg = "Successful login";
 					      msgBox.setMessage(msg);
 					      msgBox.open();
-					      shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+					      shell.dispose();   ///zalogowano wyï¿½ï¿½cz okno Logowania
 					      
 					      ///przejdz do MainWindow
 					      MainWindow mainWindowObj = new MainWindow(login);
@@ -143,7 +145,7 @@ public class LoginWindow {
 				    String msg = "Successful login";
 				    msgBox.setMessage(msg);
 				    msgBox.open();
-				    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+				    shell.dispose();   ///zalogowano wyï¿½ï¿½cz okno Logowania
 				      
 				    ///przejdz do MainWindow
 				    MainWindow mainWindowObj = new MainWindow(login);

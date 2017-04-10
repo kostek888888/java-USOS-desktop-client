@@ -1,3 +1,5 @@
+package gui;
+
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -40,7 +42,7 @@ public class MainWindow {
 		Monitor primary = display.getPrimaryMonitor ();
 		Rectangle bounds = primary.getBounds ();		
 
-		Shell shell = new Shell(SWT.CLOSE | SWT.TITLE | SWT.MIN);
+		final Shell shell = new Shell(SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		shell.setSize(bounds.width, bounds.height-40);  ///to odkomentowac jak sie chce rozdzialke w zaleznosci od rozdzielczosci monitora
 		shell.setMinimumSize(bounds.width, bounds.height-40);
 		shell.setText("USOS Manager");

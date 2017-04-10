@@ -1,3 +1,5 @@
+package gui;
+
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
@@ -55,7 +57,7 @@ public class AuthorsWindow {
 		lblDominikKlarkowski.setBounds(41, 55, 113, 15);
 		lblDominikKlarkowski.setText("Dominik Klarkowski");
 
-		Label dominik_link = new Label(shell, SWT.NONE);
+		final Label dominik_link = new Label(shell, SWT.NONE);
 		dominik_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		dominik_link.setBounds(180, 55, 55, 15);
 		dominik_link.setText("Github");
@@ -81,7 +83,7 @@ public class AuthorsWindow {
 		lblWojciechKusek.setBounds(41, 76, 113, 15);
 		lblWojciechKusek.setText("Wojciech K\u0142usek");
 		
-		Label wojtek_link = new Label(shell, SWT.NONE);
+		final Label wojtek_link = new Label(shell, SWT.NONE);
 		wojtek_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		wojtek_link.setBounds(180, 76, 55, 15);
 		wojtek_link.setText("Github");
@@ -107,7 +109,7 @@ public class AuthorsWindow {
 		lblMichaKostecki.setBounds(41, 97, 113, 15);
 		lblMichaKostecki.setText("Micha\u0142 Kostecki");
 		
-		Label michal_link = new Label(shell, SWT.NONE);
+		final Label michal_link = new Label(shell, SWT.NONE);
 		michal_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		michal_link.setBounds(180, 97, 55, 15);
 		michal_link.setText("Github");
@@ -133,7 +135,7 @@ public class AuthorsWindow {
 		lblNewLabel.setBounds(41, 118, 113, 15);
 		lblNewLabel.setText("Tomasz Kowalczyk");
 
-		Label tomek_link = new Label(shell, SWT.NONE);
+		final Label tomek_link = new Label(shell, SWT.NONE);
 		tomek_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		tomek_link.setBounds(180, 118, 55, 15);
 		tomek_link.setText("Github");
@@ -157,7 +159,7 @@ public class AuthorsWindow {
 		lblUsosMagnagerOn.setBounds(24, 178, 188, 15);
 		lblUsosMagnagerOn.setText("Visit USOS Manager project site on");
 		
-		Label project_link = new Label(shell, SWT.NONE);
+		final Label project_link = new Label(shell, SWT.NONE);
 		project_link.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		project_link.setBounds(215, 178, 47, 15);
 		project_link.setText("Github");
