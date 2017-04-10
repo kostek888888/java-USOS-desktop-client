@@ -21,7 +21,6 @@ public class Main {
 		/*
 		UsosManager usosManager = new UsosManager();
 
-
 		try {
 			usosManager.login("94070910750", "qwertyqwerty");
 			System.out.println("Zalogowano");
