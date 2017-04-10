@@ -2,7 +2,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
@@ -17,6 +16,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.TraverseListener;
+import org.eclipse.swt.events.TraverseEvent;
 
 public class LoginWindow {
 	private Text loginText;
@@ -37,7 +38,9 @@ public class LoginWindow {
 		Shell shell = new Shell();
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		shell.setSize(355, 526);
+		shell.setMinimumSize(355, 526);
 		shell.setText("USOS Manager Login");
+		shell.setImage(new Image(display, "icon/favicon-0.png"));
 
 		///apka odpali sie na pierwszym monitorze na srodku ekranu
 		Monitor primary = display.getPrimaryMonitor ();
@@ -52,6 +55,46 @@ public class LoginWindow {
 		loginText.setBounds(103, 336, 173, 21);
 		
 		passText = new Text(shell, SWT.BORDER | SWT.PASSWORD);
+		passText.addTraverseListener(new TraverseListener() {
+			public void keyTraversed(TraverseEvent arg0) {
+				if(arg0.detail == SWT.TRAVERSE_RETURN)
+				{
+					String login = loginText.getText();
+					String pass = passText.getText();
+					/*
+					if(login.length()>0 && pass.length()>0 && login.compareTo("login")==0 && pass.compareTo("pass")==0 )   ///zwraca 0 jak takie same <>0 jak rozne
+					{
+						MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
+					    String msg = "Successful login";
+					    msgBox.setMessage(msg);
+					    msgBox.open();
+					    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+					      
+					    ///przejdz do MainWindow
+					    MainWindow mainWindowObj = new MainWindow(login);
+					}
+					else
+					{
+						 MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_WARNING);
+						 String msg = "login: login \n"
+				      		+ "pass: pass";
+						 msgBox.setMessage(msg);
+						 msgBox.open();
+					}
+					*/
+					
+					MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
+				    String msg = "Successful login";
+				    msgBox.setMessage(msg);
+				    msgBox.open();
+				    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+				      
+				    ///przejdz do MainWindow
+				    MainWindow mainWindowObj = new MainWindow(login);
+					
+				}
+			}
+		});
 		passText.setBounds(103, 373, 173, 21);
 		
 		Label loginLabel = new Label(shell, SWT.NONE);
@@ -73,17 +116,18 @@ public class LoginWindow {
 				public void mouseUp(MouseEvent e) {
 					String login = loginText.getText();
 					String pass = passText.getText();
+					/*
 					if(login.length()>0 && pass.length()>0 && login.compareTo("login")==0 && pass.compareTo("pass")==0 )   ///zwraca 0 jak takie same <>0 jak rozne
 					{
 						signInButton.setEnabled(false);   ///dezaktywuj przycisk
 						  MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
-					      String msg = "Zalogowany";
+					      String msg = "Successful login";
 					      msgBox.setMessage(msg);
 					      msgBox.open();
 					      shell.dispose();   ///zalogowano wy³¹cz okno Logowania
 					      
 					      ///przejdz do MainWindow
-					      MainWindow mainWindowObj = new MainWindow();
+					      MainWindow mainWindowObj = new MainWindow(login);
 					}
 					else
 					{
@@ -93,6 +137,16 @@ public class LoginWindow {
 						 msgBox.setMessage(msg);
 						 msgBox.open();
 					}
+					*/
+					
+					MessageBox msgBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
+				    String msg = "Successful login";
+				    msgBox.setMessage(msg);
+				    msgBox.open();
+				    shell.dispose();   ///zalogowano wy³¹cz okno Logowania
+				      
+				    ///przejdz do MainWindow
+				    MainWindow mainWindowObj = new MainWindow(login);
 				}
 			});
 
@@ -153,6 +207,7 @@ public class LoginWindow {
 				display.sleep();
 			}
 		}
+		 
 	}
 
 

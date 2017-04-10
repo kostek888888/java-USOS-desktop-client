@@ -3,6 +3,7 @@ package usos.helper.mark;
 import java.math.BigDecimal;
 
 import usos.helper.mark.strategy.MarkStrategyInterface;
+import usos.helper.mark.strategy.NzalMarkStrategy;
 
 public class Mark {
 	
@@ -12,7 +13,7 @@ public class Mark {
 	public Mark(MarkStrategyInterface markStrategy) {
 		this.markStrategy = markStrategy;
 	}
-	
+
 	public void setNumeralMark(BigDecimal numeralMark) {
 		this.numeralMark = numeralMark;
 	}
