@@ -15,18 +15,15 @@ import usos.helper.TypeOfClass;
 import usos.helper.mark.Mark;
 import usos.helper.mark.MarkFactory;
 
-public class UsosMarksManager {
+public class UsosMarksManager extends UsosAbstractManager {
 	
 	static protected String MARKS_URL = "https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index";
-	
-	protected String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
 	
 	private MarkFactory markFactory;
 	
 	UsosMarksManager() {
 		markFactory = new MarkFactory();
 	}
-	
 	
 	public void getMarks(String sessionId) throws IOException {
 		Document markDocument = this.getMarksDocument(sessionId);

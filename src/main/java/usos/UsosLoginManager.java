@@ -17,26 +17,14 @@ import org.jsoup.select.Elements;
 
 
 
-public class UsosLoginManager {
+public class UsosLoginManager extends UsosAbstractManager {
 	
-	private String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+	
 	private String sessionId = null;
-	private String testServerUrl = null;
-	private boolean testMode = false;
-	
-	
+
 	UsosLoginManager() {
 		turnOnTestMode("http://localhost:8080/javaUSOSpskMock");
 	}
-	
-	private String getCasDomain() {
-		return (testMode == true) ? testServerUrl : "https://cas.usos.tu.kielce.pl";
-	}
-	
-	private String getUsosDomain() {
-		return (testMode == true) ? testServerUrl : "https://usosweb.tu.kielce.pl"; 
-	}
-	
 	
 	/**
 	 * 
@@ -124,33 +112,14 @@ public class UsosLoginManager {
 				
 	}
 	
+	public void logout() throws IOException {
+		Response res = Jsoup.connect(getCasDomain()+"/cas/login")
+				.userAgent(this.userAgent)
+				.execute();
+	}
+	
 	public String getSessionId() {
 		return this.sessionId;
 	}
-	
-	public void turnOnTestMode(String testServerUrl) {
-		testMode = true;
-		this.testServerUrl = testServerUrl;
-	}
-	
-	protected void displayDataResponse(Response response) {
-		System.out.println("URL : "+response.url());
-		System.out.println("HTML CODE: "+response.statusCode());
-		System.out.println("Cookies : "+response.cookies());
-		
-		if(response.statusCode() == 301 || response.statusCode() == 302) {
-			System.out.println("Location : "+response.header("Location"));
-		}
-		
-		try {
-			//System.out.println(response.parse().toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println(" ===================== ");
-	}
-	
 	
 }
