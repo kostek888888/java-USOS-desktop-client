@@ -28,10 +28,18 @@ public class UsosLoginManagerTest {
 			assertNotNull(usosLoginManager.getSessionId());
 			
 	}
+	
+	@Test
+	public void testLogout() throws IOException, LogoutException {
+		usosLoginManager.logout();  
+	}
+	
 
 	@Test
 	public void testGetSessionId() {
-		fail("Not yet implemented");
+		assertEquals(usosLoginManager.getSessionId(),"test");
 	}
+	
+	
 
 }

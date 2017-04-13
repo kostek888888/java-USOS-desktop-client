@@ -24,9 +24,9 @@ public class UsosManager {
 			usosLoginManager.login(login, pass);
 			this.sessionId = usosLoginManager.getSessionId();
 	}
-	
-	public void logout() {
-		//@todo
+	 
+	public void logout() throws IOException {
+		usosLoginManager.logout();
 	}
 	
 	

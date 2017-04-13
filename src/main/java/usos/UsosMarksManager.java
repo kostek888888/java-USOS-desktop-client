@@ -21,7 +21,7 @@ public class UsosMarksManager extends UsosAbstractManager {
 	
 	private MarkFactory markFactory;
 	
-	UsosMarksManager() {
+	protected UsosMarksManager() {
 		markFactory = new MarkFactory();
 	}
 	

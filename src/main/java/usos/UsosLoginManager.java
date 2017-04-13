@@ -22,8 +22,8 @@ public class UsosLoginManager extends UsosAbstractManager {
 	
 	private String sessionId = null;
 
-	UsosLoginManager() {
-		turnOnTestMode("http://localhost:8080/javaUSOSpskMock");
+	protected UsosLoginManager() {
+		
 	}
 	
 	/**
@@ -108,14 +108,16 @@ public class UsosLoginManager extends UsosAbstractManager {
 							.followRedirects(false) 
 							.execute();
 				}
-				
-				
 	}
 	
-	public void logout() throws IOException {
-		Response res = Jsoup.connect(getCasDomain()+"/cas/login")
+	public void logout() throws IOException, LogoutException {
+		Response res = Jsoup.connect(getCasDomain()+"/cas/logout")
 				.userAgent(this.userAgent)
 				.execute();
+		
+		if(res.parse().select("#page > div.text > h2").text().trim().equals("Udane wylogowanie") == false) {
+			throw new LogoutException();
+		}
 	}
 	
 	public String getSessionId() {
