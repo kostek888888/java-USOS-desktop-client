@@ -31,7 +31,7 @@ public class UsosManager {
 	
 	
 	public void getMarks() throws IOException {
-		usosMarksManager.getMarks(this.sessionId);
+		usosMarksManager.getMarksForLastSemester(this.sessionId);
 	}
 	
 	

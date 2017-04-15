@@ -68,12 +68,13 @@ public class UsosMarksManagerTest {
 		Subject sd = subjects.get(7);
 		List<TypeOfClass> typesOfClassDs = sd.getTypesOfClass();
 		 
-		TypeOfClass sdLecture = typesOfClassAmia.get(0);
+		TypeOfClass sdLecture = typesOfClassDs.get(0);
 		assertEquals(sdLecture.getMainMark().getValueMark(), new BigDecimal("2")); 
 		assertEquals(sdLecture.getOldMarks().size(), 2);
 		assertEquals(sdLecture.getOldMarks().get(0).getValueMark(), new BigDecimal("2"));
 		assertEquals(sdLecture.getOldMarks().get(1).getValueMark(), new BigDecimal("2"));
 		
+		TypeOfClass sdLlaboratory = typesOfClassDs.get(0);
 		
 	}
 
