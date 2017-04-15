@@ -25,13 +25,12 @@ public class UsosManager {
 			this.sessionId = usosLoginManager.getSessionId();
 	}
 	 
-	public void logout() throws IOException {
-		usosLoginManager.logout();
+	public void logout() throws IOException, LogoutException { 
+		usosLoginManager.logout(); 
 	}
 	
 	
-	public void getMarks() throws IOException
-	{
+	public void getMarks() throws IOException {
 		usosMarksManager.getMarks(this.sessionId);
 	}
 	

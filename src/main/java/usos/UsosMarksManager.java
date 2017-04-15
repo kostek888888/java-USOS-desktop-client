@@ -16,23 +16,21 @@ import usos.helper.mark.Mark;
 import usos.helper.mark.MarkFactory;
 
 public class UsosMarksManager extends UsosAbstractManager {
-	
-	static protected String MARKS_URL = "https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index";
-	
+
 	private MarkFactory markFactory;
 	
 	protected UsosMarksManager() {
 		markFactory = new MarkFactory();
 	}
 	
-	public void getMarks(String sessionId) throws IOException {
+	public Semester getMarksForLastSemester(String sessionId) throws IOException {
 		Document markDocument = this.getMarksDocument(sessionId);
-		this.getLastSemester(markDocument);
+		return this.getLastSemester(markDocument);
 	}
 	
 	private Document getMarksDocument(String sessionId) throws IOException {
 		
-		Response oceny = Jsoup.connect("https://usosweb.tu.kielce.pl/kontroler.php?_action=dla_stud/studia/oceny/index")
+		Response oceny = Jsoup.connect(this.getUsosDomain()+"/kontroler.php?_action=dla_stud/studia/oceny/index")
 				.userAgent(this.userAgent)
 				.header("Host", "usosweb.tu.kielce.pl")
 				.header("Upgrade-Insecure-Requests", "1")
