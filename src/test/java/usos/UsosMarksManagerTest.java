@@ -74,8 +74,9 @@ public class UsosMarksManagerTest {
 		assertEquals(sdLecture.getOldMarks().get(0).getValueMark(), new BigDecimal("2"));
 		assertEquals(sdLecture.getOldMarks().get(1).getValueMark(), new BigDecimal("2"));
 		
-		TypeOfClass sdLlaboratory = typesOfClassDs.get(0);
-		
+		TypeOfClass sdLlaboratory = typesOfClassDs.get(1);
+		assertEquals(sdLlaboratory.getOldMarks().size(), 0);
+		assertEquals(sdLlaboratory.getMainMark().getValueMark(), new BigDecimal("3.5")); 
 	}
 
 }
