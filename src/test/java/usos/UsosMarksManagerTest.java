@@ -53,13 +53,13 @@ public class UsosMarksManagerTest {
 		Subject amia = subjects.get(0);
 		Map<TypeOfClass.type, TypeOfClass> typesOfClassAmia = amia.getTypesOfClass();
 		
-		TypeOfClass amiaLecture = typesOfClassAmia.get(0);
+		TypeOfClass amiaLecture = typesOfClassAmia.get(TypeOfClass.type.LECTURE);
 		assertEquals(amiaLecture.getName(), "Wykłady");
 		assertEquals(amiaLecture.getMainMark().getValueMark(), new BigDecimal("2"));
 		assertEquals(amiaLecture.getOldMarks().get(0).getValueMark(), new BigDecimal("2"));
 		assertEquals(amiaLecture.getOldMarks().size(), 1);
 		
-		TypeOfClass amiaClasses = typesOfClassAmia.get(1);
+		TypeOfClass amiaClasses = typesOfClassAmia.get(TypeOfClass.type.CLASSES);
 		assertEquals(amiaClasses.getName(), "Ćwiczenia");
 		assertEquals(amiaClasses.getMainMark().getValueMark(), new BigDecimal("3"));
 		assertEquals(amiaClasses.getOldMarks().size(), 0);
@@ -69,13 +69,13 @@ public class UsosMarksManagerTest {
 		Subject sd = subjects.get(7);
 		Map<TypeOfClass.type, TypeOfClass> typesOfClassDs = sd.getTypesOfClass();
 		 
-		TypeOfClass sdLecture = typesOfClassDs.get(0);
+		TypeOfClass sdLecture = typesOfClassDs.get(TypeOfClass.type.LECTURE);
 		assertEquals(sdLecture.getMainMark().getValueMark(), new BigDecimal("2")); 
 		assertEquals(sdLecture.getOldMarks().size(), 2);
 		assertEquals(sdLecture.getOldMarks().get(0).getValueMark(), new BigDecimal("2"));
 		assertEquals(sdLecture.getOldMarks().get(1).getValueMark(), new BigDecimal("2"));
 		
-		TypeOfClass sdLlaboratory = typesOfClassDs.get(1);
+		TypeOfClass sdLlaboratory = typesOfClassDs.get(TypeOfClass.type.LABOLATORY);
 		assertEquals(sdLlaboratory.getOldMarks().size(), 0);
 		assertEquals(sdLlaboratory.getMainMark().getValueMark(), new BigDecimal("3.5")); 
 	}

@@ -117,9 +117,9 @@ public class UsosMarksManager extends UsosAbstractManager {
 		
 		switch (typep) {  
 	        case "wykłady" :    	return TypeOfClass.type.LECTURE;
-	        case "ćwiczenia" :  	return TypeOfClass.type.LECTURE;
-	        case "projekt" :		return TypeOfClass.type.LECTURE;
-	        case "laboratorium":	return TypeOfClass.type.LECTURE;
+	        case "ćwiczenia" :  	return TypeOfClass.type.CLASSES;
+	        case "projekt" :		return TypeOfClass.type.PROJECT;
+	        case "laboratorium":	return TypeOfClass.type.LABOLATORY;
 	        default: throw new IllegalArgumentException();
 		}
 	}
