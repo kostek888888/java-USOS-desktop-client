@@ -15,6 +15,10 @@ import usos.helper.mark.Mark;
  */
 public class TypeOfClass {
 	
+	public enum type {
+		LECTURE, CLASSES, PROJECT, LABOLATORY;
+	}
+	
 	private String name;
 	
 	private Mark mainMark;

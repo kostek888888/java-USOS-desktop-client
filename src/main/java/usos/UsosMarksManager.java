@@ -87,7 +87,7 @@ public class UsosMarksManager extends UsosAbstractManager {
 			
 			this.addMarksToTypeOfClass(typeOfClass, divWithMarks);
 			
-			subject.addTypeOfClass(typeOfClass);
+			subject.addTypeOfClass(this.getTypeOfClassByString(typeOfClassName), typeOfClass);
 		}
 	}
 	
@@ -110,6 +110,18 @@ public class UsosMarksManager extends UsosAbstractManager {
 		Element rowWithNameSemester = tableWithMarks.select("tbody:nth-child(1) > tr > td").first();
 		rowWithNameSemester.select("a").remove();
 		return rowWithNameSemester.text().replaceAll("-", "").trim(); // w nazwie jest myślnik, wywalamy go
+	}
+	
+	private TypeOfClass.type getTypeOfClassByString(String typep) { 
+		typep = typep.toLowerCase().trim();
+		
+		switch (typep) {  
+	        case "wykłady" :    	return TypeOfClass.type.LECTURE;
+	        case "ćwiczenia" :  	return TypeOfClass.type.LECTURE;
+	        case "projekt" :		return TypeOfClass.type.LECTURE;
+	        case "laboratorium":	return TypeOfClass.type.LECTURE;
+	        default: throw new IllegalArgumentException();
+		}
 	}
 	
 }

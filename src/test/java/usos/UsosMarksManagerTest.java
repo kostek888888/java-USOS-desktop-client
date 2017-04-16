@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -50,7 +51,7 @@ public class UsosMarksManagerTest {
 		
 		// amia test
 		Subject amia = subjects.get(0);
-		List<TypeOfClass> typesOfClassAmia = amia.getTypesOfClass();
+		Map<TypeOfClass.type, TypeOfClass> typesOfClassAmia = amia.getTypesOfClass();
 		
 		TypeOfClass amiaLecture = typesOfClassAmia.get(0);
 		assertEquals(amiaLecture.getName(), "Wykłady");
@@ -66,7 +67,7 @@ public class UsosMarksManagerTest {
 		
 		// SD test
 		Subject sd = subjects.get(7);
-		List<TypeOfClass> typesOfClassDs = sd.getTypesOfClass();
+		Map<TypeOfClass.type, TypeOfClass> typesOfClassDs = sd.getTypesOfClass();
 		 
 		TypeOfClass sdLecture = typesOfClassDs.get(0);
 		assertEquals(sdLecture.getMainMark().getValueMark(), new BigDecimal("2")); 

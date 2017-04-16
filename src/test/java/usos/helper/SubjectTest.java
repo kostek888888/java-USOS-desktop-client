@@ -18,7 +18,7 @@ public class SubjectTest {
 	public void testAddTypeOfClass() {
 		
 		assertEquals(subject.getTypesOfClass().size(), 0);
-		subject.addTypeOfClass(exampleTypeOfClass);
+		subject.addTypeOfClass(TypeOfClass.type.LECTURE, exampleTypeOfClass);
 		assertEquals(subject.getTypesOfClass().size(), 1);
 		assertEquals(subject.getTypesOfClass().get(0), exampleTypeOfClass);
 	}
@@ -26,7 +26,7 @@ public class SubjectTest {
 	@Test
 	public void testGetTypesOfClass() {
 		assertEquals(subject.getTypesOfClass().size(), 0);
-		subject.addTypeOfClass(exampleTypeOfClass);
+		subject.addTypeOfClass(TypeOfClass.type.LECTURE, exampleTypeOfClass);
 		assertEquals(subject.getTypesOfClass().size(), 1);
 		assertEquals(subject.getTypesOfClass().get(0), exampleTypeOfClass);
 	}
