@@ -2,6 +2,8 @@ package usos;
 import java.io.IOException;
 import java.util.Map;
 
+import usos.helper.Semester;
+
 public class UsosManager {
 	
 	
@@ -30,8 +32,8 @@ public class UsosManager {
 	}
 	
 	
-	public void getMarks() throws IOException {
-		usosMarksManager.getMarksForLastSemester(this.sessionId);
+	public Semester getMarksForLastSemester() throws IOException {
+		return usosMarksManager.getMarksForLastSemester(this.sessionId);
 	}
 	
 	
