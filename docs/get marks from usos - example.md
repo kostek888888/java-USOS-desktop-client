@@ -1,5 +1,5 @@
 
-# ============== przykład pobierania ocen z usosManager
+# przykład pobierania ocen z usosManager
 
 ```java
 import java.io.IOException;
