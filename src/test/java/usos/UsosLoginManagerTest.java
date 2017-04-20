@@ -14,7 +14,7 @@ public class UsosLoginManagerTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		usosLoginManager = new UsosLoginManager();
-		usosLoginManager.turnOnTestMode("http://localhost:8080/javaUSOSpskMock");
+		usosLoginManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");
 	}
 
 	@Test(expected=LoginInvalidCredentialsException.class)

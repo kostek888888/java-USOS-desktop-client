@@ -23,12 +23,12 @@ public class UsosMarksManagerTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		usosLoginManager = new UsosLoginManager();
-		usosLoginManager.turnOnTestMode("http://localhost:8080/javaUSOSpskMock");
+		usosLoginManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");
 		
 		usosLoginManager.login("test", "qwerty");
 		
 		usosMarksManager = new UsosMarksManager();
-		usosMarksManager.turnOnTestMode("http://localhost:8080/javaUSOSpskMock");
+		usosMarksManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");
 		
 		
 	}
