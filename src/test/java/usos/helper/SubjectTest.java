@@ -20,7 +20,7 @@ public class SubjectTest {
 		assertEquals(subject.getTypesOfClass().size(), 0);
 		subject.addTypeOfClass(TypeOfClass.type.LECTURE, exampleTypeOfClass);
 		assertEquals(subject.getTypesOfClass().size(), 1);
-		assertEquals(subject.getTypesOfClass().get(0), exampleTypeOfClass);
+		assertEquals(subject.getTypesOfClass().get(TypeOfClass.type.LECTURE), exampleTypeOfClass);
 	}
 
 	@Test
@@ -28,7 +28,7 @@ public class SubjectTest {
 		assertEquals(subject.getTypesOfClass().size(), 0);
 		subject.addTypeOfClass(TypeOfClass.type.LECTURE, exampleTypeOfClass);
 		assertEquals(subject.getTypesOfClass().size(), 1);
-		assertEquals(subject.getTypesOfClass().get(0), exampleTypeOfClass);
+		assertEquals(subject.getTypesOfClass().get(TypeOfClass.type.LECTURE), exampleTypeOfClass);
 	}
 
 	@Test

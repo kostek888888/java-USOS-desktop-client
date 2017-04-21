@@ -7,10 +7,11 @@ import org.junit.Test;
 
 public class SemesterTest {
 	
-	static Semester semester = new Semester();
+	static Semester semester;
 	static Subject testSubject;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		semester = new Semester();
 		testSubject = new Subject();
 		testSubject.setName("trooooo");
 	}
@@ -18,6 +19,7 @@ public class SemesterTest {
 	@Test
 	public void testGetSubjects() {
 		assertNotNull(semester.getSubjects());
+		semester.getSubjects().clear();
 		assertEquals(semester.getSubjects().size(), 0);
 		semester.addSubject(testSubject);
 		assertEquals(semester.getSubjects().size(), 1);
@@ -26,17 +28,21 @@ public class SemesterTest {
 
 	@Test
 	public void testAddSubject() {
-		fail("Not yet implemented");
+		semester.getSubjects().clear();
+		assertEquals(semester.getSubjects().size(), 0);
+		semester.addSubject(testSubject);
+		assertEquals(semester.getSubjects().size(), 1);
 	}
 
 	@Test
 	public void testGetName() {
-		fail("Not yet implemented");
+		assertEquals(testSubject.getName(), "trooooo");
 	}
 
 	@Test
 	public void testSetName() {
-		fail("Not yet implemented");
+		semester.setName("test");
+		assertEquals(semester.getName(), "test");
 	}
 
 }
