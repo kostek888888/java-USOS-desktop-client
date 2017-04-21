@@ -1,0 +1,11 @@
+geckoDriverPatch=
+
+usosCasUrl=https://cas.usos.tu.kielce.pl
+usosLogin=
+usosPass=
+
+usosCasMockUrl=http://31.178.72.165:8080/javaUSOSpskMock
+usosMockUrl=http://31.178.72.165:8080/javaUSOSpskMock
+
+usosMockLogin=test
+usosMockPass=qwerty

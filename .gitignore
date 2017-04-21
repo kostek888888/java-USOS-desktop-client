@@ -1,3 +1,5 @@
+src/test/java/usos/usosTests.properties
+
 *.class
 
 # Mobile Tools for Java (J2ME)
