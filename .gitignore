@@ -1,4 +1,6 @@
 src/test/java/usos/usosTests.properties
+database/*
+derby.log
 
 *.class
 
