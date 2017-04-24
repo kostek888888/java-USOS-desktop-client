@@ -8,12 +8,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="403.0" minWidth="400.0" prefHeight="403.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.guiController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="403.0" minWidth="400.0" prefHeight="403.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.guiController">
    <children>
-      <Button fx:id="loginButton" layoutX="108.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#loginButtonClick" prefHeight="25.0" prefWidth="242.0" text="Login" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
-      <Label layoutX="70.0" layoutY="224.0" text="Login" />
-      <Label layoutX="50.0" layoutY="255.0" text="Password" />
+      <Button fx:id="loginButton" layoutX="108.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#loginButtonClick" prefHeight="25.0" prefWidth="242.0" text="Sign In" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="loginLabel" layoutX="70.0" layoutY="224.0" text="Login" />
+      <Label fx:id="passwordLabel" layoutX="50.0" layoutY="255.0" text="Password" />
       <TextField fx:id="loginTextField" layoutX="108.0" layoutY="220.0" onKeyReleased="#enterPressed" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
       <HBox alignment="TOP_CENTER" layoutX="6.0" layoutY="14.0" AnchorPane.bottomAnchor="322.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="14.0">
          <children>
@@ -25,5 +26,19 @@
          </children>
       </HBox>
       <PasswordField fx:id="passTextField" layoutX="108.0" layoutY="251.0" onKeyPressed="#enterPressed" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
+      <Pane layoutX="328.36083984375" layoutY="364.0" AnchorPane.rightAnchor="14.63916015625">
+         <children>
+            <ImageView fx:id="imageEnglishLanguage" fitHeight="25.0" fitWidth="30.0" layoutX="36.0" onMouseClicked="#selectEnglish" onMouseEntered="#changeCursor" onMouseExited="#backCursor" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/englishversion.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagePolishLanguage" fitHeight="25.0" fitWidth="30.0" onMouseClicked="#selectPolish" onMouseEntered="#changeCursor" onMouseExited="#backCursor" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/polishversion.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
