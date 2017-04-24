@@ -17,7 +17,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,400,400);
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-			primaryStage.setTitle("USOS MANAGER LOGIN");
+			primaryStage.setTitle("USOS MANAGER");
 			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

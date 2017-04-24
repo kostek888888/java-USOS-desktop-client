@@ -42,6 +42,20 @@ public class guiController {
     
    	@FXML
 	private AnchorPane anchorPane;
+   	
+   	
+   	
+   	private String language = "english";
+   	
+   	public void setLanguage(String language)
+   	{
+   		this.language=language;
+   	}
+   	
+   	public String getLanguage()
+   	{
+   		return language;
+   	}
 
 
 
@@ -54,9 +68,19 @@ public class guiController {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
     		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		alert.setTitle("Information Dialog");
     		alert.setHeaderText(null);
-    		alert.setContentText("Success Login");
+    		
+    		if(getLanguage()=="english")
+    		{
+        		alert.setTitle("Information");
+        		alert.setContentText("Success Login");
+    		}
+    		if(getLanguage()=="polish")
+    		{
+        		alert.setTitle("Informacja");
+        		alert.setContentText("Udane Logowanie");
+    		}
+
 
     		alert.showAndWait();
     	}
@@ -65,9 +89,18 @@ public class guiController {
     		Alert alert = new Alert(AlertType.WARNING);
     		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
     		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		alert.setTitle("Information Dialog");
     		alert.setHeaderText(null);
-    		alert.setContentText("Wrong Login or Password");
+    		
+    		if(getLanguage()=="english")
+    		{
+        		alert.setTitle("Warning");
+        		alert.setContentText("Wrong login or password");
+    		}
+    		if(getLanguage()=="polish")
+    		{
+        		alert.setTitle("Uwaga");
+        		alert.setContentText("Z³y login lub has³o");
+    		}
 
     		alert.showAndWait();
     	}  	
@@ -86,7 +119,7 @@ public class guiController {
     		    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
     		    		alert.setTitle("Information Dialog");
     		    		alert.setHeaderText(null);
-    		    		alert.setContentText("Success Login");
+    		    		alert.setContentText("Success Sign In");
     		    		alert.showAndWait();
     		    	}
     		    	else
@@ -114,7 +147,8 @@ public class guiController {
     	passwordLabel.setLayoutX(50.0);
  
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENAGER LOGIN");
+    	stage.setTitle("USOS MENAGER");
+    	setLanguage("english");
 
     }
     
@@ -128,11 +162,12 @@ public class guiController {
     	passwordLabel.setLayoutX(70.0);   ///Polskie "Has³o" jest krótsze niz angielskie Password i trzeba przesun¹æ
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENAD¯ER LOGOWANIE");
+    	stage.setTitle("USOS MENAD¯ER");
+    	setLanguage("polish");
 
     }
 	
-    ///ustawienie kursora na dlon gdy wejdzie na obszar flagi
+    ///ustawienie kursora na dlon gdy wejdzie na obszar flag
     @FXML
     void changeCursor(MouseEvent event) {
     	imageEnglishLanguage.getScene().getRoot().setCursor(Cursor.HAND);
