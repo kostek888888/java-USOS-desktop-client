@@ -15,7 +15,7 @@
       <Button fx:id="loginButton" layoutX="108.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#loginButtonClick" prefHeight="25.0" prefWidth="242.0" text="Sign In" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
       <Label fx:id="loginLabel" layoutX="70.0" layoutY="224.0" text="Login" />
       <Label fx:id="passwordLabel" layoutX="50.0" layoutY="255.0" text="Password" />
-      <TextField fx:id="loginTextField" layoutX="108.0" layoutY="220.0" onKeyReleased="#enterPressed" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
+      <TextField fx:id="loginTextField" layoutX="108.0" layoutY="220.0" onKeyPressed="#enterPressed" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
       <HBox alignment="TOP_CENTER" layoutX="6.0" layoutY="14.0" AnchorPane.bottomAnchor="322.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="14.0">
          <children>
             <ImageView fitHeight="164.0" fitWidth="388.0" pickOnBounds="true">
