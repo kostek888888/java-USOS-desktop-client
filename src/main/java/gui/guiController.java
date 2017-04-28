@@ -114,25 +114,46 @@ public class guiController {
               {
     			  if("login".equals(loginTextField.getText())     &&    "haslo".equals(passTextField.getText()) )
     		    	{
+    		    		
     		    		Alert alert = new Alert(AlertType.INFORMATION);
     		    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
     		    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		    		alert.setTitle("Information Dialog");
     		    		alert.setHeaderText(null);
-    		    		alert.setContentText("Success Sign In");
+    		    		
+    		    		if(getLanguage()=="english")
+    		    		{
+    		        		alert.setTitle("Information");
+    		        		alert.setContentText("Success Login");
+    		    		}
+    		    		if(getLanguage()=="polish")
+    		    		{
+    		        		alert.setTitle("Informacja");
+    		        		alert.setContentText("Udane Logowanie");
+    		    		}
+
+
     		    		alert.showAndWait();
     		    	}
     		    	else
+    		    	{
+    		    		Alert alert = new Alert(AlertType.WARNING);
+    		    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    		    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+    		    		alert.setHeaderText(null);
+    		    		
+    		    		if(getLanguage()=="english")
     		    		{
-	    		    		Alert alert = new Alert(AlertType.WARNING);
-	    		    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-	    		    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-	    		    		alert.setTitle("Information Dialog");
-	    		    		alert.setHeaderText(null);
-	    		    		alert.setContentText("Wrong Login or Password");
-	
-	    		    		alert.showAndWait();
-    		    		}  	
+    		        		alert.setTitle("Warning");
+    		        		alert.setContentText("Wrong login or password");
+    		    		}
+    		    		if(getLanguage()=="polish")
+    		    		{
+    		        		alert.setTitle("Uwaga");
+    		        		alert.setContentText("Z³y login lub has³o");
+    		    		}
+
+    		    		alert.showAndWait();
+    		    	}  	
  
               }
     }
