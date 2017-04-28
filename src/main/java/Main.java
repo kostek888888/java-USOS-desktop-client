@@ -13,7 +13,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import database.Test;
-import gui.LoginWindow;
 import usos.LoginInvalidCredentialsException;
 import usos.UsosManager;
 
@@ -23,8 +22,8 @@ public class Main {
 		
 		//LoginWindow loginObj = new LoginWindow();
 		
-		Test test = new Test();
-		test.test();
+		//Test test = new Test();
+		//test.test();
 		
 		/*
 		Connection conn;
