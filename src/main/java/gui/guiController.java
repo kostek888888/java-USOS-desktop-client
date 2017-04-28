@@ -99,7 +99,7 @@ public class guiController {
     		if(getLanguage()=="polish")
     		{
         		alert.setTitle("Uwaga");
-        		alert.setContentText("Z³y login lub has³o");
+        		alert.setContentText("Å»Å‚y login lub hasÅ‚o");
     		}
 
     		alert.showAndWait();
@@ -149,7 +149,7 @@ public class guiController {
     		    		if(getLanguage()=="polish")
     		    		{
     		        		alert.setTitle("Uwaga");
-    		        		alert.setContentText("Z³y login lub has³o");
+    		        		alert.setContentText("Å»Å‚y login lub hasÅ‚o");
     		    		}
 
     		    		alert.showAndWait();
@@ -178,12 +178,12 @@ public class guiController {
     @FXML
     void selectPolish(MouseEvent event) {
     	loginLabel.setText("Login");
-    	passwordLabel.setText("Has³o");
-    	loginButton.setText("Zaloguj siê");
-    	passwordLabel.setLayoutX(70.0);   ///Polskie "Has³o" jest krótsze niz angielskie Password i trzeba przesun¹æ
+    	passwordLabel.setText("HasÅ‚o");
+    	loginButton.setText("Zaloguj siÄ™");
+    	passwordLabel.setLayoutX(70.0);   ///Polskie "Hasï¿½o" jest krï¿½tsze niz angielskie Password i trzeba przesunï¿½ï¿½
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENAD¯ER");
+    	stage.setTitle("USOS MENADÅ»ER");
     	setLanguage("polish");
 
     }
