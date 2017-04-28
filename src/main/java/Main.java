@@ -12,6 +12,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import database.Test;
 import gui.LoginWindow;
 import usos.LoginInvalidCredentialsException;
 import usos.UsosManager;
@@ -22,7 +23,10 @@ public class Main {
 		
 		//LoginWindow loginObj = new LoginWindow();
 		
+		Test test = new Test();
+		test.test();
 		
+		/*
 		Connection conn;
 		
 		String dbUrl = "jdbc:derby:database;create=true";
@@ -41,7 +45,7 @@ public class Main {
 	    while (rs.next()) { 
 	        System.out.printf("%d\t%s\n", rs.getInt("id"), rs.getString("name"));
 	    }
-		
+		*/
 		
 		
 		
