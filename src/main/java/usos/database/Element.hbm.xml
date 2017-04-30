@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<hibernate-mapping package="database">
+<hibernate-mapping package="usos.database">
 
 	
 	<class table="ELEMENT" name="Element">
@@ -9,7 +9,8 @@
 		</id>
 		
 		<property name="date" column="ELEMENT_DATE" type="timestamp"/>
-		<property name="title"/>
+		<property name="data"/>
+		<property name="login"/>
 	</class>
 
 </hibernate-mapping>

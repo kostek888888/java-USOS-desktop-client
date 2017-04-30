@@ -1,21 +1,23 @@
-package database;
+package usos.database;
 
 import java.util.Date;
 
 public class Element {
 	private Long id;
 
-	private String title;
+	private String data;
+	private String login;
 	private Date date;
 
 	public Element() {
 		// this form used by Hibernate
 	}
 
-	public Element(String title, Date date) {
+	public Element(String login, String data, Date date) {
 		// for application use, to create new events
-		this.title = title;
+		this.data = data;
 		this.date = date;
+		this.login = login;
 	}
 
 	public Long getId() {
@@ -34,11 +36,19 @@ public class Element {
 		this.date = date;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getData() {
+		return data;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setData(String data) {
+		this.data = data;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 }

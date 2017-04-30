@@ -12,57 +12,26 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import database.Test;
+import com.google.gson.Gson;
+
 import usos.LoginInvalidCredentialsException;
+import usos.LogoutException;
 import usos.UsosManager;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException, SQLException {
-		
-		//LoginWindow loginObj = new LoginWindow();
-		
-		//Test test = new Test();
-		//test.test();
-		
-		/*
-		Connection conn;
-		
-		String dbUrl = "jdbc:derby:database;create=true";
-	    conn = DriverManager.getConnection(dbUrl);
-		
-	    Statement stmt = conn.createStatement();
-	    stmt.executeUpdate("Create table users (id int primary key, name varchar(30))");
-		
-	    // insert 2 rows
-	    stmt.executeUpdate("insert into users values (1,'tom')");
-	    stmt.executeUpdate("insert into users values (2,'peter')");
-	 
-	    // query
-	    ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-		 
-	    while (rs.next()) { 
-	        System.out.printf("%d\t%s\n", rs.getInt("id"), rs.getString("name"));
-	    }
-		*/
-		
-		
-		
-		
-		
-		/*
+	public static void main(String[] args) throws IOException, SQLException, LogoutException {
+
 		UsosManager usosManager = new UsosManager();
 
 		try {
-			usosManager.login("94070910750", "qwertyqwerty");
+			usosManager.login("94070910750", "qwertys");
 			System.out.println("Zalogowano");
 		} catch (LoginInvalidCredentialsException e) {
 			System.out.println("Niepoprawne dane logowania");
+		} finally {
+			usosManager.logout();
 		}
-		*/
-
-		
-		
 		
 		
 	}

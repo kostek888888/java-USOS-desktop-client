@@ -2,6 +2,7 @@ package usos;
 import java.io.IOException;
 import java.util.Map;
 
+import usos.database.DatabaseManager;
 import usos.helper.Semester;
 
 public class UsosManager {
@@ -9,12 +10,15 @@ public class UsosManager {
 	
 	protected UsosLoginManager usosLoginManager;
 	protected UsosMarksManager usosMarksManager;
+	protected DatabaseManager databaseManager;
 	
 	protected String sessionId = null;
+	protected String login;
 	
 	public UsosManager() {
 		usosLoginManager = new UsosLoginManager();
 		usosMarksManager = new UsosMarksManager();
+		databaseManager = new DatabaseManager();
 	}
 	
 	public void turnOnTestMode(String testServerUrl) {
@@ -25,15 +29,26 @@ public class UsosManager {
 	public void login(String login, String pass) throws IOException, LoginInvalidCredentialsException {
 			usosLoginManager.login(login, pass);
 			this.sessionId = usosLoginManager.getSessionId();
+			this.login = login;
 	}
 	 
 	public void logout() throws IOException, LogoutException { 
 		usosLoginManager.logout(); 
+		databaseManager.close();
 	}
 	
 	
 	public Semester getMarksForLastSemester() throws IOException {
 		return usosMarksManager.getMarksForLastSemester(this.sessionId);
+	}
+	
+	public boolean checkChangesInMarks(Semester semester) {
+		if(databaseManager.checkChangeInMarks(semester)) {
+			databaseManager.saveSemester(semester, login); 
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	
