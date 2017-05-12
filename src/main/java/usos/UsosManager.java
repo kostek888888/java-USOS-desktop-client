@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import usos.database.DatabaseManager;
+import usos.database.Element;
 import usos.helper.Semester;
 
 public class UsosManager {
@@ -42,13 +43,16 @@ public class UsosManager {
 		return usosMarksManager.getMarksForLastSemester(this.sessionId);
 	}
 	
-	public boolean checkChangesInMarks(Semester semester) {
-		if(databaseManager.checkChangeInMarks(semester)) {
+	public boolean checkChangesInMarks() throws IOException {
+		Semester semester = this.getMarksForLastSemester();
+		
+		if(databaseManager.checkChangesInMarks(semester, login)) {
 			databaseManager.saveSemester(semester, login); 
 			return true;
 		} else {
 			return false;
 		}
+
 	}
 	
 	

@@ -9,7 +9,7 @@
 		</id>
 		
 		<property name="date" column="ELEMENT_DATE" type="timestamp"/>
-		<property name="data"/>
+		<property name="data" type="text"/>
 		<property name="login"/>
 	</class>
 
