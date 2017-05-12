@@ -192,7 +192,7 @@ public class guiController {
     	authorsButton.setText("Authors");
  
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENAGER Login");
+    	stage.setTitle("USOS CLIENT Login");
     	setLanguage("english");
 
     }
@@ -208,7 +208,7 @@ public class guiController {
     	authorsButton.setText("Autorzy");
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENADŻER Logowanie");
+    	stage.setTitle("USOS KLIENT Logowanie");
     	setLanguage("polish");
 
     }
@@ -234,6 +234,7 @@ public class guiController {
     	Authors authors = new Authors();
 		Stage s = new Stage();
 		authors.start(s);
+		authors.setLanguage(getLanguage());
     }
 
 }

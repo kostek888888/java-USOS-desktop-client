@@ -57,6 +57,7 @@ public class AuthorsController {
     	try{
        	 Desktop d=Desktop.getDesktop();
        	 d.browse(new URI("https://github.com/wojtek9502"));
+       	 
        	} catch(BindException e){
        		 e.printStackTrace(System.out);
        	}

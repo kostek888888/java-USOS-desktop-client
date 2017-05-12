@@ -8,10 +8,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
-
 	
 public class Authors extends Application {
 
+	public static String language;
+
+	public static String getLanguage() {
+		return language;
+	}
+
+	public static void setLanguage(String language) {
+		Authors.language = language;
+	}
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -20,7 +28,7 @@ public class Authors extends Application {
 			Scene scene = new Scene(root,400,300);
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-			primaryStage.setTitle("USOS MANAGER Authors");
+			primaryStage.setTitle("USOS CLIENT Authors");
 			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -34,4 +42,5 @@ public class Authors extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
