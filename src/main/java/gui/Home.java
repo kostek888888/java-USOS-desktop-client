@@ -9,14 +9,15 @@ import javafx.fxml.FXMLLoader;
 
 
 	
-public class Main extends Application {
+public class Home extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("MainFXML.fxml"));
-			Scene scene = new Scene(root,400,400);
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("HomeFXML.fxml"));
+			Scene scene = new Scene(root,800,600);
+
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-			primaryStage.setTitle("USOS MANAGER Login");
+			primaryStage.setTitle("USOS MANAGER Home");
 			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

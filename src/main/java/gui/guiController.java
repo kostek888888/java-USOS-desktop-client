@@ -67,7 +67,9 @@ public class guiController {
    
     @FXML
     void loginButtonClick(MouseEvent event) throws IOException, SQLException, LogoutException  {
-		///tworzenie obiektow dla okienka dialogowego
+
+		/*
+    	///tworzenie obiektow dla okienka dialogowego
     	Alert alert = new Alert(AlertType.INFORMATION);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
@@ -90,9 +92,12 @@ public class guiController {
         		alert.setContentText("Udane Logowanie");
     		}
     		alert.showAndWait();
+    	
+    		usosManager.checkChangesInMarks();
+    		
 			
 			
-			usosManager.checkChangesInMarks();
+			
 		} catch (LoginInvalidCredentialsException e) {
 
 			if(getLanguage()=="english")
@@ -107,10 +112,22 @@ public class guiController {
     		}
 
     		alert.showAndWait();
-    		
+      		
 		} finally {
 			usosManager.logout();
 		}
+		
+		*/
+		
+		///przejscie do okna Home
+    	Home home = new Home();
+		Stage s = new Stage();
+		home.start(s);
+		
+		///zamkniecie ona logowania
+		Stage loginStage = (Stage) loginButton.getScene().getWindow();
+	    loginStage.close();
+
     }
     
     
@@ -174,7 +191,7 @@ public class guiController {
     	passwordLabel.setLayoutX(50.0);
  
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENAGER");
+    	stage.setTitle("USOS MENAGER Login");
     	setLanguage("english");
 
     }
@@ -189,7 +206,7 @@ public class guiController {
     	passwordLabel.setLayoutX(70.0);   ///Polskie "Has�o" jest kr�tsze niz angielskie Password i trzeba przesun��
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS MENADŻER");
+    	stage.setTitle("USOS MENADŻER Logowanie");
     	setLanguage("polish");
 
     }
@@ -205,6 +222,17 @@ public class guiController {
     @FXML
     void backCursor(MouseEvent event) {
     	imageEnglishLanguage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+    }
+    
+    
+    @FXML
+    private Button authorsButton;
+
+    @FXML
+    void authorsButtonClick(MouseEvent event) {
+    	Authors authors = new Authors();
+		Stage s = new Stage();
+		authors.start(s);
     }
 
 }
