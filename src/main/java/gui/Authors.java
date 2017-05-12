@@ -8,13 +8,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
+
 	
 public class Authors extends Application {
+
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Authors.fxml"));
-			Scene scene = new Scene(root,350,300);
+			Scene scene = new Scene(root,400,300);
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			primaryStage.setTitle("USOS MANAGER Authors");

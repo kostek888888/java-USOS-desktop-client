@@ -53,7 +53,7 @@ public class guiController {
    	
    	private String language = "english";
 
-	protected final String getLanguage() {
+	public final String getLanguage() {
 		return language;
 	}
 
@@ -66,7 +66,7 @@ public class guiController {
 
    
     @FXML
-    void loginButtonClick(MouseEvent event) throws IOException, SQLException, LogoutException  {
+    private void loginButtonClick(MouseEvent event) throws IOException, SQLException, LogoutException  {
 
 		
     	///tworzenie obiektow dla okienka dialogowego
@@ -129,7 +129,7 @@ public class guiController {
     
     
     @FXML
-    void enterPressed(KeyEvent key) throws IOException, SQLException, LogoutException
+   private void enterPressed(KeyEvent key) throws IOException, SQLException, LogoutException
     {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();

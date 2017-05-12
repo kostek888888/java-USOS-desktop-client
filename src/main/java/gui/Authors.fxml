@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="403.0" minWidth="400.0" prefHeight="403.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AuthorsController">
-   
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AuthorsController">
+   <children>
+      <Label fx:id="authorsLabel" layoutX="160.0" layoutY="43.0" text="Authors:" AnchorPane.rightAnchor="159.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="91.0" text="Dominik Klarkowski" AnchorPane.rightAnchor="218.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="126.0" text="Wojciech Kłusek" AnchorPane.rightAnchor="246.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="162.0" text="Michał Kostecki" AnchorPane.rightAnchor="250.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="195.0" text="Tomasz Kowalczyk" AnchorPane.rightAnchor="228.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Hyperlink fx:id="fominikGit" layoutX="309.0" layoutY="92.0" onMouseClicked="#DominikGitClick" text="Github" AnchorPane.rightAnchor="47.0" />
+      <Hyperlink fx:id="wojtekGit" layoutX="309.0" layoutY="127.0" onMouseClicked="#wojtekGitClick" text="Github" AnchorPane.rightAnchor="47.0" />
+      <Hyperlink fx:id="michalGit" layoutX="309.0" layoutY="163.0" onMouseClicked="#MichalGitClick" text="Github" AnchorPane.rightAnchor="47.0" />
+      <Hyperlink fx:id="tomekGit" layoutX="309.0" layoutY="196.0" onMouseClicked="#tomekGitClick" text="Github" AnchorPane.rightAnchor="47.0" />
+      <Label fx:id="usosLabel" layoutX="31.0" layoutY="250.0" text="USOS MANAGER on" AnchorPane.rightAnchor="218.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Hyperlink fx:id="projectGit" layoutX="309.0" layoutY="251.0" onMouseClicked="#projectGitClick" text="Github" AnchorPane.rightAnchor="47.0" />
+   </children>
 </AnchorPane>
