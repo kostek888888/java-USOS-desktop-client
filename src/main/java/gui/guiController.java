@@ -227,7 +227,9 @@ public class guiController {
 
     @FXML
     void authorsButtonClick(MouseEvent event) {
-
+    	Authors authors = new Authors();
+		Stage s = new Stage();
+		authors.start(s);
     }
 
 }
