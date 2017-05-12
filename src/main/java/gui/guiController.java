@@ -1,5 +1,8 @@
 package gui;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
@@ -14,6 +17,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import usos.LoginInvalidCredentialsException;
+import usos.LogoutException;
+import usos.UsosManager;
 
 
 public class guiController {
@@ -46,30 +52,33 @@ public class guiController {
    	
    	
    	private String language = "english";
-   	
-   	public void setLanguage(String language)
-   	{
-   		this.language=language;
-   	}
-   	
-   	public String getLanguage()
-   	{
-   		return language;
-   	}
 
+	protected final String getLanguage() {
+		return language;
+	}
 
+	protected final void setLanguage(String language) {
+		this.language = language;
+	}
 
-    
+	
+	
+
+   
     @FXML
-    void loginButtonClick(MouseEvent event) {
-    	if("login".equals(loginTextField.getText())     &&    "haslo".equals(passTextField.getText()) )
-    	{
-    		
-    		Alert alert = new Alert(AlertType.INFORMATION);
-    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		alert.setHeaderText(null);
-    		
+    void loginButtonClick(MouseEvent event) throws IOException, SQLException, LogoutException  {
+		///tworzenie obiektow dla okienka dialogowego
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+		alert.setHeaderText(null);
+		
+		UsosManager usosManager = new UsosManager();
+		usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");    ///tryb testowy
+		
+		try {
+			usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
+
     		if(getLanguage()=="english")
     		{
         		alert.setTitle("Information");
@@ -80,18 +89,13 @@ public class guiController {
         		alert.setTitle("Informacja");
         		alert.setContentText("Udane Logowanie");
     		}
-
-
     		alert.showAndWait();
-    	}
-    	else
-    	{
-    		Alert alert = new Alert(AlertType.WARNING);
-    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		alert.setHeaderText(null);
-    		
-    		if(getLanguage()=="english")
+			
+			
+			usosManager.checkChangesInMarks();
+		} catch (LoginInvalidCredentialsException e) {
+
+			if(getLanguage()=="english")
     		{
         		alert.setTitle("Warning");
         		alert.setContentText("Wrong login or password");
@@ -103,23 +107,27 @@ public class guiController {
     		}
 
     		alert.showAndWait();
-    	}  	
+    		
+		} finally {
+			usosManager.logout();
+		}
     }
     
     
     @FXML
-    void enterPressed(KeyEvent key)
+    void enterPressed(KeyEvent key) throws IOException, SQLException, LogoutException
     {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+		alert.setHeaderText(null);
     		  if (key.getCode().equals(KeyCode.ENTER))
-              {
-    			  if("login".equals(loginTextField.getText())     &&    "haslo".equals(passTextField.getText()) )
-    		    	{
-    		    		
-    		    		Alert alert = new Alert(AlertType.INFORMATION);
-    		    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-    		    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		    		alert.setHeaderText(null);
-    		    		
+              { 				
+    			  	UsosManager usosManager = new UsosManager();
+    			  	usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");   ///tryb testowy
+    				try {
+    					usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
+
     		    		if(getLanguage()=="english")
     		    		{
     		        		alert.setTitle("Information");
@@ -130,18 +138,13 @@ public class guiController {
     		        		alert.setTitle("Informacja");
     		        		alert.setContentText("Udane Logowanie");
     		    		}
-
-
     		    		alert.showAndWait();
-    		    	}
-    		    	else
-    		    	{
-    		    		Alert alert = new Alert(AlertType.WARNING);
-    		    		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-    		    		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-    		    		alert.setHeaderText(null);
-    		    		
-    		    		if(getLanguage()=="english")
+    					
+    					
+    					usosManager.checkChangesInMarks();
+    				} catch (LoginInvalidCredentialsException e) {
+
+    					if(getLanguage()=="english")
     		    		{
     		        		alert.setTitle("Warning");
     		        		alert.setContentText("Wrong login or password");
@@ -153,10 +156,13 @@ public class guiController {
     		    		}
 
     		    		alert.showAndWait();
-    		    	}  	
- 
+    		    		
+    				} finally {
+    					usosManager.logout();
+    				}
               }
     }
+    
     
     
     @FXML
