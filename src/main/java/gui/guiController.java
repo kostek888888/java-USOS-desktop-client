@@ -49,6 +49,9 @@ public class guiController {
    	@FXML
 	private AnchorPane anchorPane;
    	
+    @FXML
+    private Button authorsButton;
+   	
    	
    	
    	private String language = "english";
@@ -186,6 +189,7 @@ public class guiController {
     	passwordLabel.setText("Password");
     	loginButton.setText("Sign In");
     	passwordLabel.setLayoutX(50.0);
+    	authorsButton.setText("Authors");
  
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
     	stage.setTitle("USOS MENAGER Login");
@@ -201,6 +205,7 @@ public class guiController {
     	passwordLabel.setText("Hasło");
     	loginButton.setText("Zaloguj się");
     	passwordLabel.setLayoutX(70.0);   ///Polskie "Has�o" jest kr�tsze niz angielskie Password i trzeba przesun��
+    	authorsButton.setText("Autorzy");
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
     	stage.setTitle("USOS MENADŻER Logowanie");
@@ -222,8 +227,7 @@ public class guiController {
     }
     
     
-    @FXML
-    private Button authorsButton;
+
 
     @FXML
     void authorsButtonClick(MouseEvent event) {

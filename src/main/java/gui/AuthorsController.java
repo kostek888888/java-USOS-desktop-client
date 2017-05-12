@@ -42,17 +42,11 @@ public class AuthorsController {
     @FXML
     private Hyperlink projectGit;
     
-	private String language = "english";
-
-	public final String getLanguage() {
-		return language;
-	}
-
-	protected final void setLanguage(String language) {
-		this.language = language;
-	}
+   ///PRZEKAZAC TU USTAWIENIE JEZYKA
+   
 
 
+	
 
 	
 
