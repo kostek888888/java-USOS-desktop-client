@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import usos.helper.Semester;
@@ -27,8 +28,8 @@ public class UsosManagerSeleniumTest {
 	
 	@BeforeClass 
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty("webdriver.gecko.driver", Params.getInstance().get("geckoDriverPatch"));
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", Params.getInstance().get("chromeDriverPatch"));
+		driver = new ChromeDriver();
 		usosManager = new UsosManager();
 	}
 
