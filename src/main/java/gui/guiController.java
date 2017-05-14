@@ -54,14 +54,14 @@ public class guiController {
    	
    	
    	
-   	private String language = "english";
+   	public static String language = "english";
 
-	public final String getLanguage() {
+	public static String getLanguage() {
 		return language;
 	}
 
-	protected final void setLanguage(String language) {
-		this.language = language;
+	public static void setLanguage(String lang) {
+		language = lang;
 	}
 
 	
@@ -119,14 +119,17 @@ public class guiController {
     		System.out.println("wszysyko zle");
     		
     		
-    		/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
-    		///przejscie do okna Home
-        	HomeController homeCtl = new HomeController(getLanguage());
-    		
-    		
-    		///zamkniecie okna logowania
-    		Stage loginStage = (Stage) loginButton.getScene().getWindow();
-    	    loginStage.close();
+			/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
+			///przejscie do okna Home
+    		Home home = new Home();
+        	Stage s = new Stage();
+        	home.start(s);
+        	
+			
+			
+			///zamkniecie okna logowania
+			Stage loginStage = (Stage) loginButton.getScene().getWindow();
+			loginStage.close();
       		
 		} finally {
 			usosManager.logout();
@@ -185,7 +188,10 @@ public class guiController {
     		    		
 						/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
 						///przejscie do okna Home
-						HomeController homeCtl = new HomeController(getLanguage());
+    		    		Home home = new Home();
+    		        	Stage s = new Stage();
+    		        	home.start(s);
+    		        	
 						
 						
 						///zamkniecie okna logowania

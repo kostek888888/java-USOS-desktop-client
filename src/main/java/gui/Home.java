@@ -11,13 +11,12 @@ import javafx.fxml.FXMLLoader;
 	
 public class Home extends Application {
 
-
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Home.fxml"));
-			Scene scene = new Scene(root,400,300);
+			Scene scene = new Scene(root,800,600);
+			primaryStage.setTitle("USOS CLIENT Home");
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			
