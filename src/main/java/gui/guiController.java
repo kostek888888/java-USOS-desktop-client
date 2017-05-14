@@ -53,7 +53,17 @@ public class guiController {
     private Button authorsButton;
    	
    	
-    private UsosManager usosManager = new UsosManager(); 
+   	
+   	public static String language = "english";
+
+	public static String getLanguage() {
+		return language;
+	}
+
+	public static void setLanguage(String lang) {
+		language = lang;
+	}
+
 	
 	
 
@@ -68,16 +78,17 @@ public class guiController {
 		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 		alert.setHeaderText(null);
 		
+		UsosManager usosManager = new UsosManager();
 		usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");    ///tryb testowy
 		
 		try {
 			usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
-    		if(usosManager.getLanguage()=="english")
+    		if(getLanguage()=="english")
     		{
         		alert.setTitle("Information");
         		alert.setContentText("Success Login");
     		}
-    		if(usosManager.getLanguage()=="polish")
+    		if(getLanguage()=="polish")
     		{
         		alert.setTitle("Informacja");
         		alert.setContentText("Udane Logowanie");
@@ -93,12 +104,12 @@ public class guiController {
 			
 			
 		} catch (LoginInvalidCredentialsException e) {
-			if(usosManager.getLanguage()=="english")
+			if(getLanguage()=="english")
     		{
         		alert.setTitle("Warning");
         		alert.setContentText("Wrong login or password");
     		}
-    		if(usosManager.getLanguage()=="polish")
+    		if(getLanguage()=="polish")
     		{
         		alert.setTitle("Uwaga");
         		alert.setContentText("Żły login lub hasło");
@@ -141,16 +152,17 @@ public class guiController {
 		alert.setHeaderText(null);
     		  if (key.getCode().equals(KeyCode.ENTER))
               { 				
+    			  	UsosManager usosManager = new UsosManager();
     			  	usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");   ///tryb testowy
     				try {
     					usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
 
-    		    		if(usosManager.getLanguage()=="english")
+    		    		if(getLanguage()=="english")
     		    		{
     		        		alert.setTitle("Information");
     		        		alert.setContentText("Success Login");
     		    		}
-    		    		if(usosManager.getLanguage()=="polish")
+    		    		if(getLanguage()=="polish")
     		    		{
     		        		alert.setTitle("Informacja");
     		        		alert.setContentText("Udane Logowanie");
@@ -161,12 +173,12 @@ public class guiController {
     					usosManager.checkChangesInMarks();
     				} catch (LoginInvalidCredentialsException e) {
 
-    					if(usosManager.getLanguage()=="english")
+    					if(getLanguage()=="english")
     		    		{
     		        		alert.setTitle("Warning");
     		        		alert.setContentText("Wrong login or password");
     		    		}
-    		    		if(usosManager.getLanguage()=="polish")
+    		    		if(getLanguage()=="polish")
     		    		{
     		        		alert.setTitle("Uwaga");
     		        		alert.setContentText("Żły login lub hasło");
@@ -205,7 +217,7 @@ public class guiController {
  
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
     	stage.setTitle("USOS CLIENT Login");
-    	usosManager.setLanguage("english");
+    	setLanguage("english");
 
     }
     
@@ -221,7 +233,7 @@ public class guiController {
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
     	stage.setTitle("USOS KLIENT Logowanie");
-    	usosManager.setLanguage("polish");
+    	setLanguage("polish");
 
     }
 	
