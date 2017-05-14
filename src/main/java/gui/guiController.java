@@ -97,7 +97,10 @@ public class guiController {
     	
     		usosManager.checkChangesInMarks();
     		
-			
+  
+    		
+    		
+
 			
 			
 		} catch (LoginInvalidCredentialsException e) {
@@ -112,22 +115,28 @@ public class guiController {
         		alert.setContentText("Żły login lub hasło");
     		}
     		alert.showAndWait();
+    		
+    		System.out.println("wszysyko zle");
+    		
+    		
+    		/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
+    		///przejscie do okna Home
+        	HomeController homeCtl = new HomeController(getLanguage());
+    		
+    		
+    		///zamkniecie okna logowania
+    		Stage loginStage = (Stage) loginButton.getScene().getWindow();
+    	    loginStage.close();
       		
 		} finally {
 			usosManager.logout();
+			
 		}
 		
 		
-		/*
-		///przejscie do okna Home
-    	Home home = new Home();
-		Stage s = new Stage();
-		home.start(s);
 		
-		///zamkniecie ona logowania
-		Stage loginStage = (Stage) loginButton.getScene().getWindow();
-	    loginStage.close();
-		*/
+
+		
     }
     
     
@@ -173,6 +182,15 @@ public class guiController {
     		    		}
 
     		    		alert.showAndWait();
+    		    		
+						/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
+						///przejscie do okna Home
+						HomeController homeCtl = new HomeController(getLanguage());
+						
+						
+						///zamkniecie okna logowania
+						Stage loginStage = (Stage) loginButton.getScene().getWindow();
+						loginStage.close();
     		    		
     				} finally {
     					usosManager.logout();
@@ -234,7 +252,6 @@ public class guiController {
     	Authors authors = new Authors();
 		Stage s = new Stage();
 		authors.start(s);
-		authors.setLanguage(getLanguage());
     }
 
 }
