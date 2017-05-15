@@ -7,7 +7,20 @@ import usos.database.Element;
 import usos.helper.Semester;
 
 public class UsosManager {
+	{
+		setLanguage("english");
+	}
+	
+	private String language;
+	
+	
+	public String getLanguage() {
+		return language;
+	}
 
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
 	protected UsosLoginManager usosLoginManager;
 	protected UsosMarksManager usosMarksManager;
