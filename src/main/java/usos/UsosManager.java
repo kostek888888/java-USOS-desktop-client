@@ -32,7 +32,7 @@ public class UsosManager {
 	public UsosManager() {
 		usosLoginManager = new UsosLoginManager();
 		usosMarksManager = new UsosMarksManager();
-		databaseManager = new DatabaseManager();
+		//databaseManager = new DatabaseManager();
 	}
 	
 	public void turnOnTestMode(String testServerUrl) {
