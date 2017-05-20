@@ -52,18 +52,20 @@ public class MainController {
     @FXML
     private Button authorsButton;
    	
+    private UsosStage getUsosStage() {
+    	//FUSZERKA !!! @todo
+    	return  (UsosStage) anchorPane.getScene().getWindow();
+    }
     
     private UsosManager getUsosManager() {
-    	//FUSZERKA !!!
-    	UsosStage usosStage = (UsosStage) anchorPane.getScene().getWindow();
-        return usosStage.getUsosManager();
+    	//FUSZERKA !!! @todo
+        return getUsosStage().getUsosManager();
     }
 	
    
     @FXML
     private void loginButtonClick(MouseEvent event) throws IOException, SQLException, LogoutException  {
     	loginAction();
-		
     }
     
    
@@ -73,7 +75,6 @@ public class MainController {
     	if (key.getCode().equals(KeyCode.ENTER)) {
     		loginAction();
     	}
-    	
     }
     
     private void loginAction() throws IOException {
@@ -89,89 +90,48 @@ public class MainController {
 		
 		try {
 			usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
-    		if(usosManager.getLanguage()=="english")
-    		{
-        		alert.setTitle("Information");
-        		alert.setContentText("Success Login");
-    		}
-    		if(usosManager.getLanguage()=="polish")
-    		{
-        		alert.setTitle("Informacja");
-        		alert.setContentText("Udane Logowanie");
-    		}
-    		alert.showAndWait();
-    	
-    		usosManager.checkChangesInMarks();
 			
-		} catch (LoginInvalidCredentialsException e) {
-			if(usosManager.getLanguage()=="english")
-    		{
-        		alert.setTitle("Warning");
-        		alert.setContentText("Wrong login or password");
-    		}
-    		if(usosManager.getLanguage()=="polish")
-    		{
-        		alert.setTitle("Uwaga");
-        		alert.setContentText("Żły login lub hasło");
-    		}
+        	alert.setTitle(getUsosStage().getMsg("login.dialog.sussessTitle"));
+        	alert.setContentText(getUsosStage().getMsg("login.dialog.sussessText"));
     		alert.showAndWait();
-    		
-    		System.out.println("wszysyko zle");
-    		
-    		
-			/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
-			///przejscie do okna Home
+			
     		Home home = new Home();
-        	Stage s = new Stage();
-        	home.start(s);
+        	home.start(this.getUsosStage());
         	
-			
-			
-			///zamkniecie okna logowania
-			Stage loginStage = (Stage) loginButton.getScene().getWindow();
-			loginStage.close();
-      		
+		} catch (LoginInvalidCredentialsException e) {
+				
+			alert.setTitle(getUsosStage().getMsg("login.dialog.failedTitle"));
+        	alert.setContentText(getUsosStage().getMsg("login.dialog.failedText"));	
+
+    		alert.showAndWait();   		
 		}
     }
     
-   
-    
     @FXML
     void selectEnglish(MouseEvent event) {
-    	imageEnglishLanguage.setDisable(false);
-    	loginLabel.setText("Login");
-    	passwordLabel.setText("Password");
-    	loginButton.setText("Sign In");
-    	passwordLabel.setLayoutX(50.0);
-    	authorsButton.setText("Authors");
- 
-    	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS CLIENT Login");
-    	//usosManager.setLanguage("english");
-
+    	getUsosStage().setEnLanguage();
+    	resetLanguage();
     }
-    
-    
 
     @FXML
     void selectPolish(MouseEvent event) {
-    	loginLabel.setText("Login");
-    	passwordLabel.setText("Hasło");
-    	loginButton.setText("Zaloguj się");
-    	passwordLabel.setLayoutX(70.0);   ///Polskie "Has�o" jest kr�tsze niz angielskie Password i trzeba przesun��
-    	authorsButton.setText("Autorzy");
+    	getUsosStage().setPlLanguage();
+    	resetLanguage();
+    }
+    
+    void resetLanguage() {
+    	loginLabel.setText(getUsosStage().getMsg("login.login"));
+    	passwordLabel.setText(getUsosStage().getMsg("login.pass"));
+    	loginButton.setText(getUsosStage().getMsg("login.loginButton"));
+    	authorsButton.setText(getUsosStage().getMsg("login.authorsButton"));
     	
-    	Stage stage = (Stage) anchorPane.getScene().getWindow();
-    	stage.setTitle("USOS KLIENT Logowanie");
-    	//usosManager.setLanguage("polish");
-
+    	getUsosStage().setTitle(getUsosStage().getMsg("login.title"));
     }
 	
     ///ustawienie kursora na dlon gdy wejdzie na obszar flag
     @FXML
     void changeCursor(MouseEvent event) {
     	imageEnglishLanguage.getScene().getRoot().setCursor(Cursor.HAND);
-    	
     }
     
     ///powrot do standardowego kursora gdy opusci obszar flag
@@ -179,9 +139,6 @@ public class MainController {
     void backCursor(MouseEvent event) {
     	imageEnglishLanguage.getScene().getRoot().setCursor(Cursor.DEFAULT);
     }
-    
-    
-
 
     @FXML
     void authorsButtonClick(MouseEvent event) {

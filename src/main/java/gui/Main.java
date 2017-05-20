@@ -27,8 +27,7 @@ public class Main extends Application {
 			UsosStage usosStage = new UsosStage();
 			
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-			usosStage.setTitle("USOS CLIENT Login");
-			
+			usosStage.setTitle(usosStage.getMsg("login.title"));
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			usosStage.setScene(scene);
