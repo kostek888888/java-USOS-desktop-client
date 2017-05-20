@@ -16,16 +16,15 @@ public class Home extends Application {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Home.fxml"));
 			Scene scene = new Scene(root,1280,600);
-			UsosStage usosStage = new UsosStage();
+			primaryStage.setTitle("USOS CLIENT Home");
 
-			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			
-			///Ustawia jezyk domyslny czyli angielski a powinien ten wybrany w oknie logowania @todo
-			usosStage.setTitle(usosStage.getMsg("authors.title"));
+			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			usosStage.setScene(scene);
-			usosStage.show();
+			primaryStage.setScene(scene);
+			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
