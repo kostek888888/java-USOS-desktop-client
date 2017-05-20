@@ -91,8 +91,8 @@ public class MainController {
 		try {
 			usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
 			
-        	alert.setTitle(getUsosStage().getMsg("login.dialog.sussessTitle"));
-        	alert.setContentText(getUsosStage().getMsg("login.dialog.sussessText"));
+        	alert.setTitle(getUsosStage().getMsg("login.dialog.successTitle"));
+        	alert.setContentText(getUsosStage().getMsg("login.dialog.successText"));
     		alert.showAndWait();
 			
     		Home home = new Home();
