@@ -18,14 +18,17 @@ public class Authors extends Application {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Authors.fxml"));
 			Scene scene = new Scene(root,400,300);
-
-			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-			primaryStage.setTitle("USOS CLIENT Authors");
+			UsosStage usosStage = new UsosStage();
+	
+			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+			
+			///Ustawia jezyk domyslny czyli angielski a powinien ten wybrany w oknie logowania @todo
+			usosStage.setTitle(usosStage.getMsg("authors.title"));
 			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			usosStage.setScene(scene);
+			usosStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

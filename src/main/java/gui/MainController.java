@@ -142,9 +142,10 @@ public class MainController {
 
     @FXML
     void authorsButtonClick(MouseEvent event) {
+
     	Authors authors = new Authors();
-		Stage s = new Stage();
-		authors.start(s);
+    	authors.start(this.getUsosStage());
+    	
     }
 
 }

@@ -19,13 +19,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			
-			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("gui.fxml"));
 			Scene scene = new Scene(root,400,400);
 			
 			UsosStage usosStage = new UsosStage();
-			
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			usosStage.setTitle(usosStage.getMsg("login.title"));
 			

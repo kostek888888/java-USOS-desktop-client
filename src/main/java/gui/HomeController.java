@@ -26,7 +26,7 @@ public class HomeController {
     private AnchorPane anchorPane;
 
     @FXML
-    private Label loginLabel;
+    private Label loginAsLabel;
     
     @FXML
     private Button testDzwiekuButton;
@@ -40,14 +40,17 @@ public class HomeController {
     private TableColumn<?, ?> columnType;
 
     @FXML
-    private TableColumn<?, ?> columnDate1;
+    private TableColumn<?, ?> columnMarks;
 
-    @FXML
-    private TableColumn<?, ?> columnDate2;
-
-    @FXML
-    private TableColumn<?, ?> columnDate3;
     
+    ///fakeInit odpala po kliknieciu na test dzwieku @todo
+    void fakeInit(){
+    	getUsosStage().setEnLanguage();
+    	resetLanguage();
+    	///tu niech ustawi jezyk na taki jaki byl wybrany w oknie logowania
+    	///wczytanie danych do tabeli
+    }
+        
     private UsosStage getUsosStage() {
     	//FUSZERKA !!! @todo
     	return  (UsosStage) anchorPane.getScene().getWindow();
@@ -58,7 +61,17 @@ public class HomeController {
         return getUsosStage().getUsosManager();
     }
     
+    void resetLanguage() {
+    	loginAsLabel.setText(getUsosStage().getMsg("home.loginAsLabel"));
+    	columnSubject.setText(getUsosStage().getMsg("home.column.subject"));
+    	columnType.setText(getUsosStage().getMsg("home.column.type"));
+    	columnMarks.setText(getUsosStage().getMsg("home.column.marks"));
+    	getUsosStage().setTitle(getUsosStage().getMsg("home.title"));
+    	
+    }
+
     
+
     @FXML
     void testDzwiekuClick(MouseEvent event) throws IOException {
     	try{
@@ -66,6 +79,9 @@ public class HomeController {
         	MediaPlayer mediaPlayer = new MediaPlayer(sound);
         	mediaPlayer.play();
         	testDzwiekuButton.setDisable(true);
+        	
+        	///fakeInit usun¹æ @todo
+        	fakeInit();
         	
         	//Semester semester = getUsosManager().getMarksForLastSemester();
 			//System.out.println(semester.getName());
@@ -78,6 +94,4 @@ public class HomeController {
 			
     	}
     }
-   
-
 }
