@@ -4,7 +4,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
@@ -23,7 +25,26 @@ public class Main {
 	public static void main(String[] args) throws IOException, SQLException, LogoutException {
 
 		UsosManager usosManager = new UsosManager();
-
+		
+		String language;
+        String country;
+		
+        /*
+		System.out.println("Hello.");
+        System.out.println("How are you?");
+        System.out.println("Goodbye.");
+		*/
+        
+        
+        language = new String("en");
+        country = new String("US");
+        
+        Locale currentLocale = new Locale(language, country);
+        ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
+        
+        System.out.println(messages.getString("greetings"));
+        
+		/*
 		try {
 			usosManager.login("94070910750", "qwerty");
 			System.out.println("Zalogowano");
@@ -34,7 +55,7 @@ public class Main {
 		} finally {
 			usosManager.logout();
 		}
-		
+		*/
 		
 	}
 

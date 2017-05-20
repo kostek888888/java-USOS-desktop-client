@@ -8,21 +8,31 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
+/**
+ * Stage - cos ala sesja
+ * Scene - Dane okienko
+ * AnchorPane - dziedziczy po "Parent" okienko kotwicy. Zawiera w sobie plik fxml z rozkladem okna
+ */
+
 	
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
+			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("gui.fxml"));
 			Scene scene = new Scene(root,400,400);
-
-			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-			primaryStage.setTitle("USOS CLIENT Login");
+			
+			UsosStage usosStage = new UsosStage();
+			
+			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+			usosStage.setTitle("USOS CLIENT Login");
 			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			usosStage.setScene(scene);
+			usosStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

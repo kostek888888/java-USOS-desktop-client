@@ -30,6 +30,10 @@ public class Home extends Application {
 		}
 	}
 	
+	/**
+	 * Dla testow, potem do usuniecia
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

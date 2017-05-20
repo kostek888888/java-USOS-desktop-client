@@ -22,7 +22,7 @@ import usos.LogoutException;
 import usos.UsosManager;
 
 
-public class guiController {
+public class MainController {
 
     @FXML
     private ImageView imageEnglishLanguage;
@@ -52,16 +52,33 @@ public class guiController {
     @FXML
     private Button authorsButton;
    	
-   	
-    private UsosManager usosManager = new UsosManager(); 
+    
+    private UsosManager getUsosManager() {
+    	//FUSZERKA !!!
+    	UsosStage usosStage = (UsosStage) anchorPane.getScene().getWindow();
+        return usosStage.getUsosManager();
+    }
 	
-	
-
    
     @FXML
     private void loginButtonClick(MouseEvent event) throws IOException, SQLException, LogoutException  {
-
+    	loginAction();
 		
+    }
+    
+   
+    @FXML
+   private void enterPressed(KeyEvent key) throws IOException, SQLException, LogoutException
+    {
+    	if (key.getCode().equals(KeyCode.ENTER)) {
+    		loginAction();
+    	}
+    	
+    }
+    
+    private void loginAction() throws IOException {
+    	UsosManager usosManager = getUsosManager();
+    	
     	///tworzenie obiektow dla okienka dialogowego
     	Alert alert = new Alert(AlertType.INFORMATION);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -85,12 +102,6 @@ public class guiController {
     		alert.showAndWait();
     	
     		usosManager.checkChangesInMarks();
-    		
-  
-    		
-    		
-
-			
 			
 		} catch (LoginInvalidCredentialsException e) {
 			if(usosManager.getLanguage()=="english")
@@ -120,79 +131,10 @@ public class guiController {
 			Stage loginStage = (Stage) loginButton.getScene().getWindow();
 			loginStage.close();
       		
-		} finally {
-			usosManager.logout();
-			
 		}
-		
-		
-		
-
-		
     }
     
-    
-    @FXML
-   private void enterPressed(KeyEvent key) throws IOException, SQLException, LogoutException
-    {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
-		alert.setHeaderText(null);
-    		  if (key.getCode().equals(KeyCode.ENTER))
-              { 				
-    			  	usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");   ///tryb testowy
-    				try {
-    					usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
-
-    		    		if(usosManager.getLanguage()=="english")
-    		    		{
-    		        		alert.setTitle("Information");
-    		        		alert.setContentText("Success Login");
-    		    		}
-    		    		if(usosManager.getLanguage()=="polish")
-    		    		{
-    		        		alert.setTitle("Informacja");
-    		        		alert.setContentText("Udane Logowanie");
-    		    		}
-    		    		alert.showAndWait();
-    					
-    					
-    					usosManager.checkChangesInMarks();
-    				} catch (LoginInvalidCredentialsException e) {
-
-    					if(usosManager.getLanguage()=="english")
-    		    		{
-    		        		alert.setTitle("Warning");
-    		        		alert.setContentText("Wrong login or password");
-    		    		}
-    		    		if(usosManager.getLanguage()=="polish")
-    		    		{
-    		        		alert.setTitle("Uwaga");
-    		        		alert.setContentText("Żły login lub hasło");
-    		    		}
-
-    		    		alert.showAndWait();
-    		    		
-						/////////////////////////////////////////////////////////////////////////////poki co tutaj home bo cos nie chodzi
-						///przejscie do okna Home
-    		    		Home home = new Home();
-    		        	Stage s = new Stage();
-    		        	home.start(s);
-    		        	
-						
-						
-						///zamkniecie okna logowania
-						Stage loginStage = (Stage) loginButton.getScene().getWindow();
-						loginStage.close();
-    		    		
-    				} finally {
-    					usosManager.logout();
-    				}
-              }
-    }
-    
-    
+   
     
     @FXML
     void selectEnglish(MouseEvent event) {
@@ -205,7 +147,7 @@ public class guiController {
  
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
     	stage.setTitle("USOS CLIENT Login");
-    	usosManager.setLanguage("english");
+    	//usosManager.setLanguage("english");
 
     }
     
@@ -221,7 +163,7 @@ public class guiController {
     	
     	Stage stage = (Stage) anchorPane.getScene().getWindow();
     	stage.setTitle("USOS KLIENT Logowanie");
-    	usosManager.setLanguage("polish");
+    	//usosManager.setLanguage("polish");
 
     }
 	
