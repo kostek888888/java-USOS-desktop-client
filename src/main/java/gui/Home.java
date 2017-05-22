@@ -1,6 +1,8 @@
 package gui;
 	
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -30,12 +32,6 @@ public class Home extends Application {
 		}
 	}
 	
-	/**
-	 * Dla testow, potem do usuniecia
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
+
 
 }

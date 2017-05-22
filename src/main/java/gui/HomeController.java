@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -43,10 +48,11 @@ public class HomeController {
     @FXML
     private Button testDzwiekuButton;
     
-    private TableView<?> tableView;
+    @FXML
+    private TableView<Person> tableView;
     
     @FXML
-    private TableColumn<?, ?> columnSubject;
+    private TableColumn<Person, String> columnSubject;
 
     @FXML
     private TableColumn<?, ?> columnType;
@@ -57,7 +63,10 @@ public class HomeController {
     @FXML
     private Button tableTestButton;
 
-    
+    @FXML
+    private void initialize() {
+    	columnSubject.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+    }
     
     @FXML
     void tableTestButtonClick(MouseEvent event) throws IOException {
@@ -73,10 +82,35 @@ public class HomeController {
     	resetLanguage();
     }
     
-    
+ // ... AFTER THE OTHER VARIABLES ...
 
+    /**
+     * The data as an observable list of Persons.
+     */
+    private ObservableList<Person> personData = FXCollections.observableArrayList();
+
+    /**
+     * Constructor
+     */
+    public HomeController() {
+        // Add some sample data
+        personData.add(new Person("Hans", "Muster"));
+        personData.add(new Person("Ruth", "Mueller"));
+        personData.add(new Person("Heinz", "Kurz"));
+        personData.add(new Person("Cornelia", "Meier"));
+        personData.add(new Person("Werner", "Meyer"));
+        personData.add(new Person("Lydia", "Kunz"));
+        personData.add(new Person("Anna", "Best"));
+        personData.add(new Person("Stefan", "Meier"));
+        personData.add(new Person("Martin", "Mueller"));
+    }
+    
+    //==============
+    
     void fillTable() throws IOException
     {
+    	tableView.setItems(personData);
+    	/*
     	try{
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
@@ -97,6 +131,8 @@ public class HomeController {
     		}  
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
+
+    		
     	}catch(Exception e){
     		e.printStackTrace();
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.error"));
@@ -106,7 +142,7 @@ public class HomeController {
         	Date date = new Date();
         	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel") + " " + dateFormat.format(date));
     	} 
-   
+   		*/
     }
     
 
@@ -133,6 +169,7 @@ public class HomeController {
     	dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.none"));
     	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel"));
     	
+    	
     }
 
     
@@ -148,9 +185,8 @@ public class HomeController {
     	} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Nie znaleziono pliku");
-			
-			
-			
     	}
     }
+
+    
 }
