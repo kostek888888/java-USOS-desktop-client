@@ -3,7 +3,6 @@ package gui;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 import usos.UsosManager;
 
@@ -44,10 +43,15 @@ public class UsosStage extends Stage {
         messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
 	}
 
-	private UsosManager usosManager = new UsosManager(); 
+	private UsosManager usosManager;
 	
 	 
 	
+	public void setUsosManager(UsosManager usosManager) {
+		this.usosManager = usosManager;
+	}
+
+
 	public UsosManager getUsosManager() {
 		return usosManager;
 	}

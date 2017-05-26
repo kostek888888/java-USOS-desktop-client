@@ -18,7 +18,7 @@ public class UsosManager {
 	public UsosManager() {
 		usosLoginManager = new UsosLoginManager();
 		usosMarksManager = new UsosMarksManager();
-		//databaseManager = new DatabaseManager();
+		databaseManager = new DatabaseManager();
 	}
 	
 	public void turnOnTestMode(String testServerUrl) {
@@ -32,9 +32,9 @@ public class UsosManager {
 			this.login = login;
 	}
 	 
-	public void logout() throws IOException, LogoutException { 
+	public void logout() throws IOException, LogoutException {
+		databaseManager.close(); //close database first !!!
 		usosLoginManager.logout(); 
-		databaseManager.close();
 	}
 	
 	

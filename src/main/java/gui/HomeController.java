@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,7 +69,6 @@ public class HomeController {
     	fakeInit();
     	fillTable();
     }
-    
 
     
     ///fakeInit odpala po kliknieciu na test tabeli @todo
@@ -124,6 +122,7 @@ public class HomeController {
         			//wyswietlanie po kolei ocen z każdych zajęć (ćwiczeń, labolatoriów itp)
         			System.out.println(entry.getValue().getName()+" : "+entry.getValue().getMainMark().getStringMark()); 
     		}
+        	
     		}  
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
