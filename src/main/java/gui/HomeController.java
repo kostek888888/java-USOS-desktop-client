@@ -2,6 +2,7 @@ package gui;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import usos.UsosManager;
 import usos.helper.Semester;
 import usos.helper.Subject;
@@ -167,13 +169,13 @@ public class HomeController {
     	try{
     	 	Media sound = new Media(new File(soundPath).toURI().toString());
         	MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        	mediaPlayer.play();
-        	testDzwiekuButton.setDisable(true);     	
+        	mediaPlayer.play();     	
         	
     	} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Nie znaleziono pliku");
     	}
+    	
     }
 
     
