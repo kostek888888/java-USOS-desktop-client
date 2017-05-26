@@ -49,6 +49,7 @@ public class HomeController {
     
     @FXML
     private TableColumn<TableRow, String> columnSubject;
+    
 
     @FXML
     private TableColumn<TableRow, String> columnType;
@@ -62,6 +63,8 @@ public class HomeController {
     @FXML
     private void initialize() {
     	columnSubject.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
+    	columnType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
+    	columnMarks.setCellValueFactory(cellData -> cellData.getValue().marksProperty());
     }
     
     @FXML
@@ -82,7 +85,7 @@ public class HomeController {
     /**
      * The data as an observable list of Persons.
      */
-    private ObservableList<TableRow> personData = FXCollections.observableArrayList();
+    private ObservableList<TableRow> subjectData = FXCollections.observableArrayList();
 
     /**
      * Constructor
@@ -96,7 +99,7 @@ public class HomeController {
     
     void fillTable() throws IOException
     {
-    	tableView.setItems(personData);
+    	tableView.setItems(subjectData);
     	
     	try{
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
@@ -104,22 +107,19 @@ public class HomeController {
     	 	Semester lastSemester = getUsosManager().getMarksForLastSemester();
     	 	
     	 	///semestr
-    		personData.add(new TableRow(lastSemester.getName(), "", ""));
+    	 	subjectData.add(new TableRow(lastSemester.getName(), "", ""));
     		
     		
-    		///oceny
+    		///przedmioty
     		List<Subject> subjects = lastSemester.getSubjects();
     		for(Subject it : subjects){;
     			Map<type, TypeOfClass> typesOfClass = it.getTypesOfClass();
         		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
         										//nazwa         ///typ						///ocena
-        			personData.add(new TableRow(it.getName()  , entry.getValue().getName() , entry.getValue().getMainMark().getStringMark()));
-    		}
-        	
+        			subjectData.add(new TableRow(it.getName()  , entry.getValue().getName() , entry.getValue().getMainMark().getStringMark()));
+        		}
     		}  
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
-    		
-
     		
     	}catch(Exception e){
     		e.printStackTrace();
