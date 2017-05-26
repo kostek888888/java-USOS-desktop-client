@@ -1,5 +1,7 @@
 package gui;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import java.awt.AWTException;
 import java.awt.MenuItem;
@@ -21,6 +23,8 @@ import javafx.stage.WindowEvent;
 import javax.imageio.ImageIO;
 
 import javafx.stage.Stage;
+import usos.LogoutException;
+import usos.UsosManager;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -35,10 +39,10 @@ import javafx.fxml.FXMLLoader;
 
 	
 public class Main extends Application {
-	
 
     private boolean firstTime;
     private TrayIcon trayIcon;
+	static private UsosManager usosManager;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -47,6 +51,7 @@ public class Main extends Application {
 			createTrayIcon(primaryStage);
 	        firstTime = true;
 	        Platform.setImplicitExit(false);
+			usosManager = new UsosManager();
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("gui.fxml"));
 			Scene scene = new Scene(root,400,400);
@@ -54,9 +59,11 @@ public class Main extends Application {
 			UsosStage usosStage = new UsosStage();
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			usosStage.setTitle(usosStage.getMsg("login.title"));
+			usosStage.setUsosManager(usosManager);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			usosStage.setScene(scene);
+
 			usosStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -65,6 +72,12 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		try {
+			usosManager.logout();
+		} catch (IOException | LogoutException e) {
+			System.out.println("Logout error");
+			e.printStackTrace();
+		}
 	}
 	
     public void createTrayIcon(final Stage primaryStage) {

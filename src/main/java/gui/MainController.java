@@ -22,7 +22,7 @@ import usos.LogoutException;
 import usos.UsosManager;
 
 
-public class MainController {
+public class MainController{
 
     @FXML
     private ImageView imageEnglishLanguage;
@@ -61,6 +61,8 @@ public class MainController {
     	//FUSZERKA !!! @todo
         return getUsosStage().getUsosManager();
     }
+    
+
 	
    
     @FXML
@@ -147,5 +149,6 @@ public class MainController {
     	authors.start(this.getUsosStage());
     	
     }
+
 
 }

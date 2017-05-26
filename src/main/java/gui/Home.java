@@ -22,8 +22,6 @@ public class Home extends Application {
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			
-			
-			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
