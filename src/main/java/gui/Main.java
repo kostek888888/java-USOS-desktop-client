@@ -1,7 +1,10 @@
 package gui;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
+import usos.LogoutException;
 import usos.UsosManager;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,7 +21,7 @@ import javafx.fxml.FXMLLoader;
 	
 public class Main extends Application {
 	
-	private UsosManager usosManager;
+	static private UsosManager usosManager;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -44,5 +47,11 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		try {
+			usosManager.logout();
+		} catch (IOException | LogoutException e) {
+			System.out.println("Logout error");
+			e.printStackTrace();
+		}
 	}
 }
