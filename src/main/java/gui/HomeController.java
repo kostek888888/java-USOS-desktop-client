@@ -29,7 +29,6 @@ import usos.helper.TypeOfClass.type;
 
 public class HomeController {
 	
-	String soundPath = "src/main/resources/sound.mp3";
 
     @FXML
     private AnchorPane anchorPane;
@@ -61,6 +60,16 @@ public class HomeController {
     
     @FXML
     private Button tableTestButton;
+    
+    @FXML
+    private Button alarmStopButton;
+    
+    private Sound sound = new Sound();
+
+
+
+ 
+    
 
     @FXML
     private void initialize() {
@@ -158,6 +167,7 @@ public class HomeController {
     	getUsosStage().setTitle(getUsosStage().getMsg("home.title"));
     	dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.none"));
     	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel"));
+    	alarmStopButton.setText(getUsosStage().getMsg("home.alarmStopButton"));
     	
     	
     }
@@ -166,17 +176,21 @@ public class HomeController {
 
     @FXML
     void testDzwiekuClick(MouseEvent event) throws IOException {
-    	try{
-    	 	Media sound = new Media(new File(soundPath).toURI().toString());
-        	MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        	mediaPlayer.play();     	
-        	
-    	} catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("Nie znaleziono pliku");
-    	}
-    	
+    		///pojawia sie przycisk "Wyłącz alarm"
+    	alarmStopButton.setVisible(true);
+    	sound.playSound();  	
     }
+    
+    
+    @FXML
+    void alarmStopButtonClicked(MouseEvent event) {
+    	sound.stopSound();
+    	
+    	///znika przycisk "Wylącz alarm"
+    	alarmStopButton.setVisible(false);
+
+    }
+
 
     
 }

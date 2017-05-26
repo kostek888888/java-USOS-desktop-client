@@ -20,5 +20,6 @@
             <TableColumn fx:id="columnMarks" prefWidth="274.0" resizable="false" text="Oceny" />
         </columns>
       </TableView>
+      <Button fx:id="alarmStopButton" layoutX="37.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#alarmStopButtonClicked" text="Wyłącz alarm" visible="false" />
    </children>
 </AnchorPane>
