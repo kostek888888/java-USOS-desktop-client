@@ -16,7 +16,7 @@ public class UsosStage extends Stage {
 
 
 	UsosStage() {
-		setDefLanguage();
+		setPlLanguage();
 
 	}
 	

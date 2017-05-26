@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AuthorsController">
    <children>
-      <Label fx:id="authorsLabel" layoutX="160.0" layoutY="43.0" text="Authors:" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="159.0">
+      <Label fx:id="authorsLabel" layoutX="160.0" layoutY="43.0" text="Autorzy:" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="159.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -37,7 +36,7 @@
       <Hyperlink fx:id="wojtekGit" layoutX="309.0" layoutY="110.0" onMouseClicked="#wojtekGitClick" text="Github" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="110.0" />
       <Hyperlink fx:id="michalGit" layoutX="309.0" layoutY="163.0" onMouseClicked="#MichalGitClick" text="Github" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="163.0" />
       <Hyperlink fx:id="tomekGit" layoutX="309.0" layoutY="196.0" onMouseClicked="#tomekGitClick" text="Github" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="196.0" />
-      <Label fx:id="usosLabel" layoutX="31.0" layoutY="250.0" prefHeight="25.0" prefWidth="151.0" text="USOS MANAGER on" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="250.0">
+      <Label fx:id="usosLabel" layoutX="31.0" layoutY="250.0" prefHeight="25.0" prefWidth="151.0" text="USOS KLIENT projekt" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="250.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

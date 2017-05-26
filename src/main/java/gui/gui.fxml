@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
- 
+
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="403.0" minWidth="400.0" prefHeight="403.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
    <children>
-      <Button fx:id="loginButton" layoutX="108.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#loginButtonClick" prefHeight="25.0" prefWidth="242.0" text="Sign In" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
+      <Button fx:id="loginButton" layoutX="108.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#loginButtonClick" prefHeight="25.0" prefWidth="242.0" text="Zaloguj się" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
       <Label fx:id="loginLabel" layoutX="70.0" layoutY="224.0" text="Login" />
-      <Label fx:id="passwordLabel" layoutX="70.0" layoutY="255.0" text="Pass" />
+      <Label fx:id="passwordLabel" layoutX="70.0" layoutY="255.0" text="Hasło" />
       <TextField fx:id="loginTextField" layoutX="108.0" layoutY="220.0" onKeyPressed="#enterPressed" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="50.0" />
       <HBox alignment="TOP_CENTER" layoutX="6.0" layoutY="14.0" AnchorPane.bottomAnchor="322.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="14.0">
          <children>
@@ -40,6 +40,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="authorsButton" layoutX="14.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#authorsButtonClick" prefHeight="25.0" prefWidth="84.0" text="Authors" />
+      <Button fx:id="authorsButton" layoutX="14.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#authorsButtonClick" prefHeight="25.0" prefWidth="84.0" text="Autorzy" />
    </children>
 </AnchorPane>

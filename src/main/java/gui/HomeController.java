@@ -51,17 +51,17 @@ public class HomeController {
     private TableColumn<TableRow, String> columnSubject;
 
     @FXML
-    private TableColumn<?, ?> columnType;
+    private TableColumn<TableRow, String> columnType;
 
     @FXML
-    private TableColumn<?, ?> columnMarks;
+    private TableColumn<TableRow, String> columnMarks;
     
     @FXML
     private Button tableTestButton;
 
     @FXML
     private void initialize() {
-    	///columnSubject.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+    	columnSubject.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
     }
     
     @FXML
@@ -102,17 +102,18 @@ public class HomeController {
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
     	 	Semester lastSemester = getUsosManager().getMarksForLastSemester();
-    		System.out.println("semestr: "+lastSemester.getName()); 
+    	 	
+    	 	///semestr
+    		personData.add(new TableRow(lastSemester.getName(), "", ""));
     		
     		
+    		///oceny
     		List<Subject> subjects = lastSemester.getSubjects();
-    		for(Subject it : subjects){
-    			System.out.println(it.getName());
+    		for(Subject it : subjects){;
     			Map<type, TypeOfClass> typesOfClass = it.getTypesOfClass();
         		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
-        			
-        			//wyswietlanie po kolei ocen z każdych zajęć (ćwiczeń, labolatoriów itp)
-        			System.out.println(entry.getValue().getName()+" : "+entry.getValue().getMainMark().getStringMark()); 
+        										//nazwa         ///typ						///ocena
+        			personData.add(new TableRow(it.getName()  , entry.getValue().getName() , entry.getValue().getMainMark().getStringMark()));
     		}
         	
     		}  
