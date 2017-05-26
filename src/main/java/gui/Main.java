@@ -2,6 +2,7 @@ package gui;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import usos.UsosManager;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -16,15 +17,21 @@ import javafx.fxml.FXMLLoader;
 
 	
 public class Main extends Application {
+	
+	private UsosManager usosManager;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			usosManager = new UsosManager();
+			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("gui.fxml"));
 			Scene scene = new Scene(root,400,400);
 			
 			UsosStage usosStage = new UsosStage();
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			usosStage.setTitle(usosStage.getMsg("login.title"));
+			usosStage.setUsosManager(usosManager);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			usosStage.setScene(scene);
