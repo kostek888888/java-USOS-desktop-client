@@ -8,9 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javafx.beans.property.ReadOnlyIntegerWrapper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -73,12 +70,12 @@ public class HomeController {
     	fakeInit();
     	fillTable();
     }
+    
 
     
     ///fakeInit odpala po kliknieciu na test tabeli @todo
     void fakeInit() throws IOException{
     	///tu niech ustawi jezyk na taki jaki byl wybrany w oknie logowania
-    	getUsosStage().setEnLanguage();
     	resetLanguage();
     }
     
@@ -110,7 +107,7 @@ public class HomeController {
     void fillTable() throws IOException
     {
     	tableView.setItems(personData);
-    	/*
+    	
     	try{
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
@@ -119,15 +116,14 @@ public class HomeController {
     		
     		
     		List<Subject> subjects = lastSemester.getSubjects();
-        	
-        	Subject firstSubject = subjects.get(0);
-    		System.out.println("semestr: "+firstSubject.getName()); 
-    		Map<type, TypeOfClass> typesOfClass = firstSubject.getTypesOfClass();
-    		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
-    			
-    			//wyswietlanie po kolei ocen z każdych zajęć (ćwiczeń, labolatoriów itp)
-    			System.out.println(entry.getValue().getName()+" : "+entry.getValue().getMainMark().getStringMark()); 
-    			
+    		for(Subject it : subjects){
+    			System.out.println(it.getName());
+    			Map<type, TypeOfClass> typesOfClass = it.getTypesOfClass();
+        		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
+        			
+        			//wyswietlanie po kolei ocen z każdych zajęć (ćwiczeń, labolatoriów itp)
+        			System.out.println(entry.getValue().getName()+" : "+entry.getValue().getMainMark().getStringMark()); 
+    		}
     		}  
     		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
@@ -142,7 +138,7 @@ public class HomeController {
         	Date date = new Date();
         	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel") + " " + dateFormat.format(date));
     	} 
-   		*/
+   		
     }
     
 

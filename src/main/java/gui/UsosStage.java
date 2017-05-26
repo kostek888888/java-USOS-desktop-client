@@ -17,7 +17,21 @@ public class UsosStage extends Stage {
 
 
 	UsosStage() {
-		setEnLanguage();
+		setDefLanguage();
+
+	}
+	
+	public void setDefLanguage() {
+	    Locale defaultLocale = new Locale(System.getProperty("user.language"), System.getProperty("user.country"));
+	    messages = ResourceBundle.getBundle("MessagesBundle", defaultLocale);
+	    
+	    //jesli ktos ma np ustawiony niemiecki (a nie mamy po niemiecku) to ustawi mu angielski
+	    if(defaultLocale.getLanguage()!="pl" || defaultLocale.getLanguage()!="en")
+	    {
+	    	setEnLanguage();
+	    }
+
+	    
 	}
 	
 	public void setEnLanguage() {

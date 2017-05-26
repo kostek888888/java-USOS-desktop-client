@@ -1,9 +1,13 @@
 package gui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -17,12 +21,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import usos.LoginInvalidCredentialsException;
 import usos.LogoutException;
 import usos.UsosManager;
 
 
-public class MainController {
+public class MainController{
 
     @FXML
     private ImageView imageEnglishLanguage;
@@ -61,6 +66,9 @@ public class MainController {
     	//FUSZERKA !!! @todo
         return getUsosStage().getUsosManager();
     }
+    
+
+ 
 	
    
     @FXML
@@ -147,5 +155,6 @@ public class MainController {
     	authors.start(this.getUsosStage());
     	
     }
+
 
 }
