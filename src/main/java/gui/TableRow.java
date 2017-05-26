@@ -9,9 +9,9 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
 public class TableRow {
-	private final StringProperty Subject;
-    private final StringProperty Type;
-    private final StringProperty Marks;
+	private final StringProperty subject;
+    private final StringProperty type;
+    private final StringProperty marks;
 
 
     
@@ -29,83 +29,50 @@ public class TableRow {
      * @param lastName
      */
     public TableRow(String subject, String type, String marks) {
-        this.Subject = new SimpleStringProperty(subject);
-        this.Type = new SimpleStringProperty(type);
-        this.Marks = new SimpleStringProperty(marks);
+        this.subject = new SimpleStringProperty(subject);
+        this.type = new SimpleStringProperty(type);
+        this.marks = new SimpleStringProperty(marks);
     }
-
-    ///get set @todo
-    /*
-    public String getFirstName() {
-        return firstName.get();
+    
+    public String getSubject()
+    {
+    	return subject.get(); 
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
+    
+    public void setSubject(String subject){
+    	this.subject.set(subject);
     }
-
-    public StringProperty firstNameProperty() {
-        return firstName;
+    
+    public StringProperty subjectProperty(){
+    	return subject;
     }
-
-    public String getLastName() {
-        return lastName.get();
+    
+    
+    public String getType()
+    {
+    	return type.get(); 
     }
-
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
+    
+    public void setType(String type){
+    	this.type.set(type);
     }
-
-    public StringProperty lastNameProperty() {
-        return lastName;
+    
+    public StringProperty typeProperty(){
+    	return type;
     }
-
-    public String getStreet() {
-        return street.get();
+    
+    
+    
+    public String getMarks()
+    {
+    	return marks.get(); 
     }
-
-    public void setStreet(String street) {
-        this.street.set(street);
+    
+    public void setMarks(String marks){
+    	this.marks.set(marks);
     }
-
-    public StringProperty streetProperty() {
-        return street;
+    
+    public StringProperty marksProperty(){
+    	return marks;
     }
-
-    public int getPostalCode() {
-        return postalCode.get();
-    }
-
-    public void setPostalCode(int postalCode) {
-        this.postalCode.set(postalCode);
-    }
-
-    public IntegerProperty postalCodeProperty() {
-        return postalCode;
-    }
-
-    public String getCity() {
-        return city.get();
-    }
-
-    public void setCity(String city) {
-        this.city.set(city);
-    }
-
-    public StringProperty cityProperty() {
-        return city;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday.get();
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday.set(birthday);
-    }
-
-    public ObjectProperty<LocalDate> birthdayProperty() {
-        return birthday;
-    }
-    */
 }
