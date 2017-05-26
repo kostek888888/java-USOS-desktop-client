@@ -30,10 +30,15 @@ public class UsosStage extends Stage {
         messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
 	}
 
-	private UsosManager usosManager = new UsosManager(); 
+	private UsosManager usosManager;
 	
 	 
 	
+	public void setUsosManager(UsosManager usosManager) {
+		this.usosManager = usosManager;
+	}
+
+
 	public UsosManager getUsosManager() {
 		return usosManager;
 	}

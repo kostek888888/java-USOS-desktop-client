@@ -1,7 +1,12 @@
 package gui;
 	
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
+import usos.LogoutException;
+import usos.UsosManager;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +21,9 @@ import javafx.fxml.FXMLLoader;
 
 	
 public class Main extends Application {
+	
+	private static UsosManager usosManager = new UsosManager();
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -23,8 +31,10 @@ public class Main extends Application {
 			Scene scene = new Scene(root,400,400);
 			
 			UsosStage usosStage = new UsosStage();
+			usosStage.setUsosManager(usosManager);
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			usosStage.setTitle(usosStage.getMsg("login.title"));
+			
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			usosStage.setScene(scene);
@@ -34,7 +44,12 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		launch(args);
+		try {
+			usosManager.logout();
+		} catch (IOException | LogoutException e) {
+			System.out.println("Logout error");
+		}
 	}
 }
