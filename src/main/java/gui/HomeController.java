@@ -45,10 +45,10 @@ public class HomeController {
     private Button testDzwiekuButton;
     
     @FXML
-    private TableView<Person> tableView;
+    private TableView<TableRow> tableView;
     
     @FXML
-    private TableColumn<Person, String> columnSubject;
+    private TableColumn<TableRow, String> columnSubject;
 
     @FXML
     private TableColumn<?, ?> columnType;
@@ -61,7 +61,7 @@ public class HomeController {
 
     @FXML
     private void initialize() {
-    	columnSubject.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+    	///columnSubject.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
     }
     
     @FXML
@@ -82,22 +82,14 @@ public class HomeController {
     /**
      * The data as an observable list of Persons.
      */
-    private ObservableList<Person> personData = FXCollections.observableArrayList();
+    private ObservableList<TableRow> personData = FXCollections.observableArrayList();
 
     /**
      * Constructor
      */
     public HomeController() {
         // Add some sample data
-        personData.add(new Person("Hans", "Muster"));
-        personData.add(new Person("Ruth", "Mueller"));
-        personData.add(new Person("Heinz", "Kurz"));
-        personData.add(new Person("Cornelia", "Meier"));
-        personData.add(new Person("Werner", "Meyer"));
-        personData.add(new Person("Lydia", "Kunz"));
-        personData.add(new Person("Anna", "Best"));
-        personData.add(new Person("Stefan", "Meier"));
-        personData.add(new Person("Martin", "Mueller"));
+    	
     }
     
     //==============

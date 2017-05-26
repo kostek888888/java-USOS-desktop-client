@@ -8,19 +8,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
-public class Person {
-	private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty street;
-    private final IntegerProperty postalCode;
-    private final StringProperty city;
-    private final ObjectProperty<LocalDate> birthday;
+public class TableRow {
+	private final StringProperty Subject;
+    private final StringProperty Type;
+    private final StringProperty Marks;
+
+
     
     /**
      * Default constructor.
      */
-    public Person() {
-        this(null, null);
+    public TableRow() {
+        this(null, null, null);
     }
 
     /**
@@ -29,17 +28,14 @@ public class Person {
      * @param firstName
      * @param lastName
      */
-    public Person(String firstName, String lastName) {
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-
-        // Some initial dummy data, just for convenient testing.
-        this.street = new SimpleStringProperty("some street");
-        this.postalCode = new SimpleIntegerProperty(1234);
-        this.city = new SimpleStringProperty("some city");
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+    public TableRow(String subject, String type, String marks) {
+        this.Subject = new SimpleStringProperty(subject);
+        this.Type = new SimpleStringProperty(type);
+        this.Marks = new SimpleStringProperty(marks);
     }
 
+    ///get set @todo
+    /*
     public String getFirstName() {
         return firstName.get();
     }
@@ -111,4 +107,5 @@ public class Person {
     public ObjectProperty<LocalDate> birthdayProperty() {
         return birthday;
     }
+    */
 }
