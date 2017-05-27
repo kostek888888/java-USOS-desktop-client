@@ -17,6 +17,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import usos.LogoutException;
@@ -25,6 +26,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 
 
 	
@@ -43,6 +46,10 @@ public class Home extends Application {
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Home.fxml"));
 			Scene scene = new Scene(root,1280,600);
+			Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
+			primaryStage.setX((primaryScreenBounds.getMaxX() - scene.getWidth()) / 2);
+			primaryStage.setY((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2);
+			System.out.println(primaryStage.getX() + " " + primaryStage.getY() + " " + ((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2));
 			primaryStage.setTitle("USOS CLIENT Home");
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
@@ -144,12 +151,12 @@ public class Home extends Application {
         }
     }
 
-    private void hide(final Stage stage) {
+    private void hide(final Stage primaryStage) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 if (SystemTray.isSupported()) {
-                    stage.hide();
+                    primaryStage.hide();
                     showProgramIsMinimizedMsg();
                 } else {
             		Main.logout();
@@ -158,5 +165,7 @@ public class Home extends Application {
             }
         });
     }
+    
+    
 
 }
