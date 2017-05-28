@@ -45,12 +45,6 @@ public class Main extends Application {
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("gui.fxml"));
 			Scene scene = new Scene(root,400,400);
-			Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
-			primaryStage.setX((primaryScreenBounds.getMaxX() - scene.getWidth()) / 2);
-			primaryStage.setY((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2);
-			//primaryStage.setX(760);
-			//primaryStage.setY(1000);
-			System.out.println(primaryStage.getX() + " " + primaryStage.getY() + " " + ((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2));
 			
 			UsosStage usosStage = new UsosStage();
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
@@ -60,6 +54,11 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			usosStage.setScene(scene);
 
+			Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
+			usosStage.setX((primaryScreenBounds.getMaxX() - scene.getWidth()) / 2);
+			usosStage.setY((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2);
+			System.out.println(usosStage.getX() + " " + usosStage.getY() + " " + ((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2));
+			
 			usosStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
