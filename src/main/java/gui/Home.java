@@ -14,6 +14,8 @@ import javax.imageio.ImageIO;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -42,8 +44,21 @@ public class Home extends Application {
 			
 			primaryStage.hide();	// trzeba ukryc okno po zalogowaniu bo inaczej bedzie widac jak sie zmienia
 			createTrayIcon(primaryStage);
-	        firstTime = true;
-	        Platform.setImplicitExit(false);
+	        firstTime = false;	// wlaczenie powiadomien
+	        
+	        createStage(primaryStage);
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	        
+	}
+		
+	public void createStage(Stage primaryStage) {
+		
+		
+		try {
+			Platform.setImplicitExit(false);
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Home.fxml"));
 			Scene scene = new Scene(root,1280,600);
@@ -51,8 +66,10 @@ public class Home extends Application {
 			primaryStage.setX((primaryScreenBounds.getMaxX() - scene.getWidth()) / 2);
 			primaryStage.setY((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2);
 			primaryStage.setResizable(true);
+			
+			
 			primaryStage.setTitle("USOS CLIENT Home");
-
+	
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -84,6 +101,23 @@ public class Home extends Application {
                 System.out.println(ex);
             }*/
 
+            primaryStage.iconifiedProperty().addListener(new ChangeListener<Boolean>() {
+            	
+				@Override
+			    public void changed(ObservableValue<? extends Boolean> ov, Boolean oldVal, Boolean newVal) {
+					//System.out.println("oldVal: " + oldVal + " newVal: " + newVal);
+			        if (newVal.equals(new Boolean(true)))
+			        {
+			        	primaryStage.hide();
+			        	showProgramIsMinimizedMsg();
+			        	//System.out.println("IF");
+			        } else {
+			        	//createStage(primaryStage);
+			        	primaryStage.show();
+			        	//System.out.println("ELSE");
+			        }
+			    }
+			});
 
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
@@ -107,7 +141,9 @@ public class Home extends Application {
                         @Override
                         public void run() {
                         	if (!primaryStage.isShowing()) {
-                        		primaryStage.show();
+                        		createStage(primaryStage);
+                        		primaryStage.setIconified(false);
+                        		//System.out.println("showListener");
                         	}
                         	else if (primaryStage.isIconified())
                         		primaryStage.setIconified(false);
@@ -148,7 +184,7 @@ public class Home extends Application {
             trayIcon.displayMessage("New mark!",
                     "AMiA Lecture 3",
                     TrayIcon.MessageType.INFO);
-            firstTime = false;
+            //firstTime = false;
         }
     }
 
