@@ -223,7 +223,7 @@ public class HomeController {
             	 sliderValueLabel.setText(String.format("%d", new_val.intValue()));
             	 setSliderValue(new_val.intValue());
             	 
-            	 System.out.println(getSliderValue());
+            	 //System.out.println(getSliderValue());
              }
          });
     }
