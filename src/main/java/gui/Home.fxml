@@ -22,8 +22,8 @@
         </columns>
       </TableView>
       <Button fx:id="alarmStopButton" layoutX="37.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#alarmStopButtonClicked" text="Wyłącz alarm" visible="false" />
-      <Slider fx:id="slider" blockIncrement="1.0" layoutX="589.0" layoutY="733.0" majorTickUnit="1.0" max="120.0" min="1.0" minorTickCount="1" onMouseDragged="#sliderChangeValue" prefHeight="14.0" prefWidth="618.0" snapToTicks="true" value="1.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="589.0" />
-      <Label fx:id="sliderValueLabel" layoutX="1218.0" layoutY="732.0" text="1" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="1218.0" />
+      <Slider fx:id="slider" blockIncrement="1.0" layoutX="589.0" layoutY="733.0" majorTickUnit="1.0" max="120.0" min="1.0" minorTickCount="1" onMouseDragged="#sliderChangeValue" prefHeight="14.0" prefWidth="618.0" snapToTicks="true" value="10.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="589.0" />
+      <Label fx:id="sliderValueLabel" layoutX="1218.0" layoutY="732.0" text="10" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="1218.0" />
       <Label fx:id="refreshLabel" layoutX="472.0" layoutY="732.0" prefHeight="17.0" prefWidth="112.0" text="Odśwież oceny co:" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="472.0" AnchorPane.rightAnchor="696.0" />
       <Label fx:id="minLabel" layoutX="1245.0" layoutY="732.0" text="min" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="1245.0" />
    </children>
