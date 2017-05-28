@@ -37,6 +37,8 @@ public class Main extends Application {
 
 	
 	static private UsosManager usosManager;
+	static private UsosStage usosStage = new UsosStage();
+	static private double width = 400, height = 400;	// rozmiar okna
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -44,12 +46,12 @@ public class Main extends Application {
 			usosManager = new UsosManager();
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("gui.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,width,height);
 			
-			UsosStage usosStage = new UsosStage();
 			usosStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 			usosStage.setTitle(usosStage.getMsg("login.title"));
 			usosStage.setUsosManager(usosManager);
+			usosStage.setResizable(false);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			usosStage.setScene(scene);
@@ -57,7 +59,6 @@ public class Main extends Application {
 			Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
 			usosStage.setX((primaryScreenBounds.getMaxX() - scene.getWidth()) / 2);
 			usosStage.setY((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2);
-			System.out.println(usosStage.getX() + " " + usosStage.getY() + " " + ((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2));
 			
 			usosStage.show();
 		} catch(Exception e) {
@@ -78,6 +79,14 @@ public class Main extends Application {
 			System.out.println("Logout error");
 			e.printStackTrace();
 		}
+	}
+	
+	public static double getDialogX() {
+		return usosStage.getX();
+	}
+	
+	public static double getDialogY() {
+		return (usosStage.getY() + height / 2);
 	}
 	
 }

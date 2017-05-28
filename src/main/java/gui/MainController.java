@@ -83,27 +83,36 @@ public class MainController{
     	UsosManager usosManager = getUsosManager();
     	
     	///tworzenie obiektow dla okienka dialogowego
-    	Alert alert = new Alert(AlertType.INFORMATION);
+    	Alert alert = new Alert(AlertType.WARNING);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
 		alert.setHeaderText(null);
+		stage.setX(Main.getDialogX());
+		stage.setY(Main.getDialogY());
+		alert.setTitle(getUsosStage().getMsg("login.dialog.failedTitle"));
+    	alert.setContentText(getUsosStage().getMsg("login.dialog.failedText"));	
 		
 		usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");    ///tryb testowy
 		
 		try {
 			usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty
 			
+			/*	button poprawnego logowania user nie powinien go widziec no bo w sumie po co tylko straci czas
+			alert = new Alert(AlertType.INFORMATION);
+			stage = (Stage) alert.getDialogPane().getScene().getWindow();
+			stage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
+			alert.setHeaderText(null);
+			stage.setX(Main.getDialogX());
+			stage.setY(Main.getDialogY());
         	alert.setTitle(getUsosStage().getMsg("login.dialog.successTitle"));
         	alert.setContentText(getUsosStage().getMsg("login.dialog.successText"));
     		alert.showAndWait();
+    		*/
 			
     		Home home = new Home();
         	home.start(this.getUsosStage());
         	
 		} catch (LoginInvalidCredentialsException e) {
-				
-			alert.setTitle(getUsosStage().getMsg("login.dialog.failedTitle"));
-        	alert.setContentText(getUsosStage().getMsg("login.dialog.failedText"));	
 
     		alert.showAndWait();   		
 		}

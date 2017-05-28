@@ -40,6 +40,7 @@ public class Home extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
+			primaryStage.hide();	// trzeba ukryc okno po zalogowaniu bo inaczej bedzie widac jak sie zmienia
 			createTrayIcon(primaryStage);
 	        firstTime = true;
 	        Platform.setImplicitExit(false);
@@ -49,7 +50,7 @@ public class Home extends Application {
 			Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
 			primaryStage.setX((primaryScreenBounds.getMaxX() - scene.getWidth()) / 2);
 			primaryStage.setY((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2);
-			System.out.println(primaryStage.getX() + " " + primaryStage.getY() + " " + ((primaryScreenBounds.getMaxY() - scene.getHeight()) / 2));
+			primaryStage.setResizable(true);
 			primaryStage.setTitle("USOS CLIENT Home");
 
 			primaryStage.getIcons().add(new Image(("file:@../../icon/favicon-0.png")));
