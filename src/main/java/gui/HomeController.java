@@ -1,31 +1,31 @@
 package gui;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 import usos.UsosManager;
 import usos.helper.Semester;
 import usos.helper.Subject;
 import usos.helper.TypeOfClass;
 import usos.helper.TypeOfClass.type;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
+
 
 public class HomeController {
 	
@@ -65,6 +65,21 @@ public class HomeController {
     private Button alarmStopButton;
     
     private Sound sound = new Sound();
+    
+    @FXML
+    private Slider slider;
+
+    @FXML
+    private Label sliderValueLabel;
+
+
+    @FXML
+    private Label refreshLabel;
+
+    @FXML
+    private Label minLabel;
+    
+    
 
 
 
@@ -102,11 +117,9 @@ public class HomeController {
      * Constructor
      */
     public HomeController() {
-        // Add some sample data
     	
     }
     
-    //==============
     
     void fillTable() throws IOException
     {
@@ -168,8 +181,7 @@ public class HomeController {
     	dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.none"));
     	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel"));
     	alarmStopButton.setText(getUsosStage().getMsg("home.alarmStopButton"));
-    	
-    	
+    	refreshLabel.setText(getUsosStage().getMsg("home.slider.refreshLabel"));
     }
 
     
@@ -191,6 +203,30 @@ public class HomeController {
 
     }
 
+    ////////////////SLIDER
+    
+    private int sliderValue;
+    
+    
+    public int getSliderValue() {
+		return sliderValue;
+	}
+
+	public void setSliderValue(int sliderValue) {
+		this.sliderValue = sliderValue;
+	}
+
+	@FXML
+    void sliderChangeValue(MouseEvent event) {
+    	slider.valueProperty().addListener(new ChangeListener<Number>() {
+             public void changed(ObservableValue<? extends Number> ov,Number old_val, Number new_val) {
+            	 sliderValueLabel.setText(String.format("%d", new_val.intValue()));
+            	 setSliderValue(new_val.intValue());
+            	 
+            	 System.out.println(getSliderValue());
+             }
+         });
+    }
 
     
 }
