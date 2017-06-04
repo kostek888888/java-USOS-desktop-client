@@ -126,24 +126,30 @@ public class HomeController {
     	tableView.setItems(subjectData);
     	
     	try{
-    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
-    	 	Semester lastSemester = getUsosManager().getMarksForLastSemester();
-    	 	
-    	 	///semestr
-    	 	subjectData.add(new TableRow(lastSemester.getName(), "", ""));
+    		if(subjectData.isEmpty()==false)
+    		{
+    			subjectData.clear();
+    		}
     		
-    		
-    		///przedmioty
-    		List<Subject> subjects = lastSemester.getSubjects();
-    		for(Subject it : subjects){;
-    			Map<type, TypeOfClass> typesOfClass = it.getTypesOfClass();
-        		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
-        										//nazwa         ///typ						///ocena
-        			subjectData.add(new TableRow(it.getName()  , entry.getValue().getName() , entry.getValue().getMainMark().getStringMark()));
-        		}
-    		}  
-    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
+	    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
+	    		
+	    	 	Semester lastSemester = getUsosManager().getMarksForLastSemester();
+	    	 	
+	    	 	///semestr
+	    	 	subjectData.add(new TableRow(lastSemester.getName(), "", ""));
+	    		
+	    		
+	    		///przedmioty
+	    		List<Subject> subjects = lastSemester.getSubjects();
+	    		for(Subject it : subjects){;
+	    			Map<type, TypeOfClass> typesOfClass = it.getTypesOfClass();
+	        		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
+	        										//nazwa         ///typ						///ocena
+	        			subjectData.add(new TableRow(it.getName()  , entry.getValue().getName() , entry.getValue().getMainMark().getStringMark()));
+	        		}
+	    		}  
+	    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
     	}catch(Exception e){
     		e.printStackTrace();
