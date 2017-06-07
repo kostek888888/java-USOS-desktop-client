@@ -10,6 +10,8 @@ public class UsosStage extends Stage {
 
 	private ResourceBundle messages;
 	
+	private Home home;
+	
 	public String getMsg(String msg) {
 		return messages.getString(msg);
 	}
@@ -54,6 +56,16 @@ public class UsosStage extends Stage {
 
 	public UsosManager getUsosManager() {
 		return usosManager;
+	}
+
+
+	public Home getHome() {
+		return home;
+	}
+
+
+	public void setHome(Home home) {
+		this.home = home;
 	}
 	
 	

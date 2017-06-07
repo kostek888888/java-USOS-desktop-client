@@ -1,11 +1,13 @@
 chromeDriverPatch=
 
 usosCasUrl=https://cas.usos.tu.kielce.pl
+usosUrl=https://usosweb.tu.kielce.pl
 usosLogin=
 usosPass=
 
 usosCasMockUrl=http://31.178.72.165:8080/javaUSOSpskMock
 usosMockUrl=http://31.178.72.165:8080/javaUSOSpskMock
+usosMockChangeMarkUrl=http://31.178.72.165:8080/javaUSOSpskMock/kontroler.php?changeMark=1
 
 usosMockLogin=test
 usosMockPass=qwerty

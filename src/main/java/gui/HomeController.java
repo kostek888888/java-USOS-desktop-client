@@ -84,19 +84,23 @@ public class HomeController {
 
 
  
-    
+    Thread newMarksThread;
 
     @FXML
     private void initialize() {
     	columnSubject.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
     	columnType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
     	columnMarks.setCellValueFactory(cellData -> cellData.getValue().marksProperty());
+    	
+    	
     }
     
     @FXML
     void tableTestButtonClick(MouseEvent event) throws IOException {
     	fakeInit();
     	fillTable();
+    	
+    	refreshNewMarksThread(4000);
     }
 
     
@@ -223,16 +227,30 @@ public class HomeController {
 	}
 
 	@FXML
-    void sliderChangeValue(MouseEvent event) {
+    void sliderChangeValuex(MouseEvent event) {
+		
     	slider.valueProperty().addListener(new ChangeListener<Number>() {
              public void changed(ObservableValue<? extends Number> ov,Number old_val, Number new_val) {
             	 sliderValueLabel.setText(String.format("%d", new_val.intValue()));
             	 setSliderValue(new_val.intValue());
             	 
-            	 //System.out.println(getSliderValue());
-             }
+            	 
+            	 System.out.println(getSliderValue());
+             } 
          });
     }
+	
+	public void refreshNewMarksThread(int miliseconds) {
+		
+		if(newMarksThread == null) {
+			newMarksThread = new Thread(new NewMarksThread(this.getUsosManager(), getUsosStage().getHome(), miliseconds));
+			newMarksThread.start();
+		}else if(newMarksThread.isAlive()) {
+			newMarksThread.interrupt();
+			newMarksThread = new Thread(new NewMarksThread(this.getUsosManager(), getUsosStage().getHome(), miliseconds));
+			newMarksThread.start();
+		}
+	}
 
     
 }
