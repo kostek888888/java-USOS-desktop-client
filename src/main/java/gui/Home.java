@@ -34,19 +34,19 @@ import javafx.geometry.Rectangle2D;
 
 	
 public class Home extends Application {
-	
-    private boolean firstTime;
+
     private TrayIcon trayIcon;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			UsosStage usosStage = (UsosStage)primaryStage;
+			usosStage.setHome(this);
 			
-			primaryStage.hide();	// trzeba ukryc okno po zalogowaniu bo inaczej bedzie widac jak sie zmienia
-			createTrayIcon(primaryStage);
-	        firstTime = false;	// wlaczenie powiadomien
-	        
-	        createStage(primaryStage);
+			usosStage.hide();	// trzeba ukryc okno po zalogowaniu bo inaczej bedzie widac jak sie zmienia
+			createTrayIcon(usosStage);
+    
+	        createStage(usosStage);
 	        
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,7 +109,7 @@ public class Home extends Application {
 			        if (newVal.equals(new Boolean(true)))
 			        {
 			        	primaryStage.hide();
-			        	showProgramIsMinimizedMsg();
+			        	//showProgramIsMinimizedMsg();
 			        	//System.out.println("IF");
 			        } else {
 			        	//createStage(primaryStage);
@@ -179,13 +179,10 @@ public class Home extends Application {
     }
     
 	// na razie bezuzyteczne ale przyda sie do timera czytajacego oceny chyba ze znajdziemy jak pokazac dymek
-    public void showProgramIsMinimizedMsg() {
-        if (firstTime) {
+    public void showNotice() {
             trayIcon.displayMessage("New mark!",
                     "AMiA Lecture 3",
                     TrayIcon.MessageType.INFO);
-            //firstTime = false;
-        }
     }
 
     private void hide(final Stage primaryStage) {
@@ -194,7 +191,7 @@ public class Home extends Application {
             public void run() {
                 if (SystemTray.isSupported()) {
                     primaryStage.hide();
-                    showProgramIsMinimizedMsg();
+                    showNotice();
                 } else {
             		Main.logout();
                     System.exit(0);
