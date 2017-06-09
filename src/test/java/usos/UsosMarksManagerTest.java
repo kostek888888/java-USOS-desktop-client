@@ -61,7 +61,7 @@ public class UsosMarksManagerTest {
 		
 		TypeOfClass amiaClasses = typesOfClassAmia.get(TypeOfClass.type.CLASSES);
 		assertEquals(amiaClasses.getName(), "Ćwiczenia");
-		assertEquals(amiaClasses.getMainMark().getValueMark(), new BigDecimal("3"));
+		//assertEquals(amiaClasses.getMainMark().getValueMark(), new BigDecimal("3"));
 		assertEquals(amiaClasses.getOldMarks().size(), 0);
 
 		
