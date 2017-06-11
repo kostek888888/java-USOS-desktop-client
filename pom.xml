@@ -43,11 +43,11 @@
 	</dependency>
 	
 	<dependency>
-	      <groupId>org.apache.derby</groupId>
-	      <artifactId>derby</artifactId>
-	      <version>10.7.1.1</version>
-    </dependency>
-    
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.186</version>
+        </dependency>
+	
     <dependency>
 	    <groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-core</artifactId>

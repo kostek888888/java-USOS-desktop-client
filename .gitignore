@@ -1,7 +1,7 @@
 src/test/java/usos/usosTests.properties
 database/*
 derby.log
-database.mv
+database.mv.db
 
 *.class
 

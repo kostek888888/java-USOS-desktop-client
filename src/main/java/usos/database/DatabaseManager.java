@@ -41,7 +41,6 @@ public class DatabaseManager {
 	public DatabaseManager() {
 		sessionFactory = buildSessionFactory();
 		gson = new Gson();
-		//createDatabaseSchemaIfNotExist();
 	}
 	
 	public void saveSemester(Semester semester, String login) {
@@ -73,7 +72,14 @@ public class DatabaseManager {
 		if(element == null) {
 			return true;
 		}
-		 
+		
+		System.out.println("string z db:");
+		System.out.println("Data stringu z usos:"+element.getDate());
+		System.out.println(element.getData()); 
+		
+		System.out.println("string z usos:");
+		System.out.println(dataString); 
+		
 		return (element.getData().compareTo(dataString) != 0); 
 	}
 }
