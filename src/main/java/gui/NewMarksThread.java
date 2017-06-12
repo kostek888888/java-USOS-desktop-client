@@ -25,7 +25,6 @@ public class NewMarksThread implements Runnable {
 			try {
 				TimeUnit.MILLISECONDS.sleep(this.sleepMiliseconds);
 				if (usosManager.checkChangesInMarks()) {
-					System.out.println("Nowa ocena !");
 					this.home.showNotice();
 				}
 

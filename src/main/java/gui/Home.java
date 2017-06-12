@@ -181,7 +181,7 @@ public class Home extends Application {
 	// na razie bezuzyteczne ale przyda sie do timera czytajacego oceny chyba ze znajdziemy jak pokazac dymek
     public void showNotice() {
             trayIcon.displayMessage("New mark!",
-                    "AMiA Lecture 3",
+                    "New mark on USOS!",
                     TrayIcon.MessageType.INFO);
     }
 

@@ -55,6 +55,8 @@ public class UsosMarksManager extends UsosAbstractManager {
 			this.addDataToSemester(semester, trWithMarkData);
 		}
 		
+		semester.setHtml(tableWithMarks.toString());
+		
 		return semester;
 	}
 	

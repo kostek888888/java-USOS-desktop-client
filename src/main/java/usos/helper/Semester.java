@@ -7,6 +7,7 @@ public class Semester {
 	
 	private List<Subject> subjects = new ArrayList<Subject>();
 	private String name;
+	private String html;	
 	
 	public List<Subject> getSubjects() {
 		return subjects;
@@ -22,6 +23,14 @@ public class Semester {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getHtml() {
+		return html;
+	}
+
+	public void setHtml(String html) {
+		this.html = html;
 	}
 	
 }

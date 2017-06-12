@@ -46,7 +46,7 @@ public class DatabaseManager {
 	public void saveSemester(Semester semester, String login) {
 		Session session = sessionFactory.openSession();
 		
-		session.save( new Element(login, gson.toJsonTree(semester).toString() , new Date() ) );
+		session.save( new Element(login, semester.getHtml() , new Date() ) );
 		session.close();
 	}
 	
@@ -63,7 +63,7 @@ public class DatabaseManager {
 	
 	public boolean checkChangesInMarks(Semester semester, String login) {
 		
-		String dataString = gson.toJsonTree(semester).toString();
+		String dataString = semester.getHtml();
 		
 		Session session = sessionFactory.openSession();
 		Element element = this.getLastSemester(login);
@@ -72,13 +72,6 @@ public class DatabaseManager {
 		if(element == null) {
 			return true;
 		}
-		
-		System.out.println("string z db:");
-		System.out.println("Data stringu z usos:"+element.getDate());
-		System.out.println(element.getData()); 
-		
-		System.out.println("string z usos:");
-		System.out.println(dataString); 
 		
 		return (element.getData().compareTo(dataString) != 0); 
 	}
