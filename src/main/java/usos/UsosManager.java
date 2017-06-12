@@ -14,11 +14,16 @@ public class UsosManager {
 	
 	protected String sessionId = null;
 	protected String login;
+	protected String username;
 	
 	public UsosManager() {
 		usosLoginManager = new UsosLoginManager();
 		usosMarksManager = new UsosMarksManager();
 		databaseManager = new DatabaseManager();
+	}
+	
+	public String getUsername() {
+		return username;
 	}
 	
 	public void turnOnTestMode(String testServerUrl) {
@@ -30,6 +35,7 @@ public class UsosManager {
 			usosLoginManager.login(login, pass);
 			this.sessionId = usosLoginManager.getSessionId();
 			this.login = login;
+			this.username = login;
 	}
 	 
 	public void logout() throws IOException, LogoutException {

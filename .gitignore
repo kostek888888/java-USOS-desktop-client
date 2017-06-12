@@ -2,6 +2,7 @@ src/test/java/usos/usosTests.properties
 database/*
 derby.log
 database.mv.db
+database.trace.db
 
 *.class
 

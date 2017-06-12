@@ -183,7 +183,7 @@ public class HomeController {
     }
     
     void resetLanguage() {
-    	loginAsLabel.setText(getUsosStage().getMsg("home.loginAsLabel"));
+    	loginAsLabel.setText(getUsosStage().getMsg("home.loginAsLabel")+getUsosManager().getUsername());
     	columnSubject.setText(getUsosStage().getMsg("home.column.subject"));
     	columnType.setText(getUsosStage().getMsg("home.column.type"));
     	columnMarks.setText(getUsosStage().getMsg("home.column.marks"));
