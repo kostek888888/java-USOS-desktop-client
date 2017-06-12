@@ -191,7 +191,6 @@ public class Home extends Application {
             public void run() {
                 if (SystemTray.isSupported()) {
                     primaryStage.hide();
-                    showNotice();
                 } else {
             		Main.logout();
                     System.exit(0);

@@ -35,13 +35,7 @@ public class HomeController {
 
     @FXML
     private Label loginAsLabel;
-    
-    @FXML
-    private Label dataDownloadStatusLabel;
-    
-    @FXML
-    private Label recentlyCheckedLabel;
-    
+      
     @FXML
     private Button testDzwiekuButton;
     
@@ -98,9 +92,7 @@ public class HomeController {
     @FXML
     void tableTestButtonClick(MouseEvent event) throws IOException {
     	fakeInit();
-    	fillTable();
     	
-    	refreshNewMarksThread(4000);
     }
 
     
@@ -108,6 +100,8 @@ public class HomeController {
     void fakeInit() throws IOException{
     	///tu niech ustawi jezyk na taki jaki byl wybrany w oknie logowania
     	resetLanguage();
+    	fillTable();
+    	refreshNewMarksThread(10*1000);
     }
     
  // ... AFTER THE OTHER VARIABLES ...
@@ -135,11 +129,7 @@ public class HomeController {
     		{
     			subjectData.clear();
     		}
-    		
-	    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
-	    		
 	    	 	Semester lastSemester = getUsosManager().getMarksForLastSemester();
-	    	 	
 	    	 	///semestr
 	    	 	subjectData.add(new TableRow(lastSemester.getName(), "", ""));
 	    		
@@ -153,25 +143,23 @@ public class HomeController {
 	        			subjectData.add(new TableRow(it.getName()  , entry.getValue().getName() , entry.getValue().getMainMark().getStringMark()));
 	        		}
 	    		}  
-	    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.success"));
     		
     	}catch(Exception e){
     		e.printStackTrace();
-    		dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.error"));
     	} finally{
-        	///pobranie daty
-        	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss");
-        	Date date = new Date();
-        	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel") + " " + dateFormat.format(date));
+    		//updateLastUpdateTime();
     	} 
-   		
     }
     
-
+    /*
+    public void updateLastUpdateTime() {
+    	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss");
+    	Date date = new Date();
+    	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel") + " " + dateFormat.format(date));
+    	System.out.println("zmieniam time "+recentlyCheckedLabel.getText());
+    }
+    */
     
-    
-  
-        
     private UsosStage getUsosStage() {
     	//FUSZERKA !!! @todo
     	return  (UsosStage) anchorPane.getScene().getWindow();
@@ -188,8 +176,6 @@ public class HomeController {
     	columnType.setText(getUsosStage().getMsg("home.column.type"));
     	columnMarks.setText(getUsosStage().getMsg("home.column.marks"));
     	getUsosStage().setTitle(getUsosStage().getMsg("home.title"));
-    	dataDownloadStatusLabel.setText(getUsosStage().getMsg("home.statusLabel.none"));
-    	recentlyCheckedLabel.setText(getUsosStage().getMsg("home.recentlyCheckedLabel"));
     	alarmStopButton.setText(getUsosStage().getMsg("home.alarmStopButton"));
     	refreshLabel.setText(getUsosStage().getMsg("home.slider.refreshLabel"));
     }
@@ -243,11 +229,11 @@ public class HomeController {
 	public void refreshNewMarksThread(int miliseconds) {
 		
 		if(newMarksThread == null) {
-			newMarksThread = new Thread(new NewMarksThread(this.getUsosManager(), getUsosStage().getHome(), miliseconds));
+			newMarksThread = new Thread(new NewMarksThread(this.getUsosManager(), getUsosStage().getHome(), this, miliseconds));
 			newMarksThread.start();
 		}else if(newMarksThread.isAlive()) {
 			newMarksThread.interrupt();
-			newMarksThread = new Thread(new NewMarksThread(this.getUsosManager(), getUsosStage().getHome(), miliseconds));
+			newMarksThread = new Thread(new NewMarksThread(this.getUsosManager(), getUsosStage().getHome(), this, miliseconds));
 			newMarksThread.start();
 		}
 	}
