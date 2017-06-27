@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <hibernate-mapping package="usos.database">
-
-	
 	<class table="ELEMENT" name="Element">
 		<id name="id" column="ELEMENT_ID">
 			<generator class="native"/>
@@ -12,5 +10,4 @@
 		<property name="data" type="text"/>
 		<property name="login"/>
 	</class>
-
 </hibernate-mapping>

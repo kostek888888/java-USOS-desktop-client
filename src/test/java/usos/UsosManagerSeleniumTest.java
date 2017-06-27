@@ -10,6 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -78,10 +79,15 @@ public class UsosManagerSeleniumTest {
 		
 		int i = 1;
 		for(TypeOfClass typeOfClass : typesOfClass.values()) {
-
-			WebElement xx = driver.findElement(By.cssSelector("#tab1 > tr:nth-child("+i+") > td.strong > div:nth-child(1) > span:last-child"));
-			assertEquals(typeOfClass.getMainMark().getStringMark(), xx.getText());
-			i++;
+			
+			try {
+				WebElement xx = driver.findElement(By.cssSelector("#tab1 > tr:nth-child("+i+") > td.strong > div:nth-child(1) > span:last-child"));
+				assertEquals(typeOfClass.getMainMark().getStringMark(), xx.getText());
+				i++;
+			} catch(NoSuchElementException e) {
+				System.out.println("Brak oceny");
+			}
+			
 		}
 		
 	}

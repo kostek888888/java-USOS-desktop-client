@@ -21,8 +21,6 @@ public class NewMarksThread implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("thread init");
-
 		while (true) {
 			try {
 				TimeUnit.MILLISECONDS.sleep(this.sleepMiliseconds);
@@ -30,14 +28,9 @@ public class NewMarksThread implements Runnable {
 					this.home.showNotice();
 					homeController.fillTable();
 				}
-
 			} catch (InterruptedException | IOException e) {
 				e.printStackTrace();
-			} finally {
-				//homeController.updateLastUpdateTime();
 			}
-
-			System.out.println("watek cos robi");
 		}
 	}
 
