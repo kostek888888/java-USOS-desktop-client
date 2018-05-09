@@ -122,8 +122,8 @@ public class UsosMarksManager extends UsosAbstractManager {
 	        case "wyk" :    	return TypeOfClass.type.LECTURE;
 	        case "cw" :  		return TypeOfClass.type.CLASSES;
 	        case "pro" :		return TypeOfClass.type.PROJECT;
-	        case "lab":			return TypeOfClass.type.LABOLATORY;
-	        case "prakt":		return TypeOfClass.type.PRACTICE;
+	        case "lab" :		return TypeOfClass.type.LABOLATORY;
+	        case "prakt" :		return TypeOfClass.type.PRACTICE;
 	        default: System.out.println(typep); throw new IllegalArgumentException();
 		}
 	}
