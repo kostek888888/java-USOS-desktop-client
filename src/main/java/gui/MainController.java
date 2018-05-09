@@ -92,7 +92,7 @@ public class MainController{
 		alert.setTitle(getUsosStage().getMsg("login.dialog.failedTitle"));
     	alert.setContentText(getUsosStage().getMsg("login.dialog.failedText"));	
 		
-		usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");    ///tryb testowy
+		//usosManager.turnOnTestMode("http://31.178.72.165:8080/javaUSOSpskMock");    ///tryb testowy do mocka
 		
 		try {
 			usosManager.login(loginTextField.getText(),passTextField.getText());    ///haslo musi byc qwerty

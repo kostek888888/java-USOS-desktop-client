@@ -16,7 +16,7 @@ import usos.helper.mark.Mark;
 public class TypeOfClass {
 	
 	public enum type {
-		LECTURE, CLASSES, PROJECT, LABOLATORY;
+		LECTURE, CLASSES, PROJECT, LABOLATORY, PRACTICE;
 	}
 	
 	private String name;

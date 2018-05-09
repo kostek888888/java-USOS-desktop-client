@@ -51,6 +51,8 @@ public class UsosMarksManager extends UsosAbstractManager {
 		
 		Elements trsWithMarksData = tableWithMarks.select("#tab1 > tr");
 		
+
+		
 		for(Element trWithMarkData : trsWithMarksData) {
 			this.addDataToSemester(semester, trWithMarkData);
 		}
@@ -69,7 +71,6 @@ public class UsosMarksManager extends UsosAbstractManager {
 		Elements trsWithMarks = trWithMarkData.select("td:nth-child(3)");
 		
 		for(Element trWithMarks : trsWithMarks) {
-			
 			this.addTypeOfClassToSubject(subject, trWithMarks);
 		}
 		
@@ -118,11 +119,12 @@ public class UsosMarksManager extends UsosAbstractManager {
 		typep = typep.toLowerCase().trim();
 		
 		switch (typep) {  
-	        case "wykłady" :    	return TypeOfClass.type.LECTURE;
-	        case "ćwiczenia" :  	return TypeOfClass.type.CLASSES;
-	        case "projekt" :		return TypeOfClass.type.PROJECT;
-	        case "laboratorium":	return TypeOfClass.type.LABOLATORY;
-	        default: throw new IllegalArgumentException();
+	        case "wyk" :    	return TypeOfClass.type.LECTURE;
+	        case "cw" :  		return TypeOfClass.type.CLASSES;
+	        case "pro" :		return TypeOfClass.type.PROJECT;
+	        case "lab":			return TypeOfClass.type.LABOLATORY;
+	        case "prakt":		return TypeOfClass.type.PRACTICE;
+	        default: System.out.println(typep); throw new IllegalArgumentException();
 		}
 	}
 	

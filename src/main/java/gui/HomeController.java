@@ -136,7 +136,7 @@ public class HomeController {
 	    		
 	    		///przedmioty
 	    		List<Subject> subjects = lastSemester.getSubjects();
-	    		for(Subject it : subjects){;
+	    		for(Subject it : subjects){
 	    			Map<type, TypeOfClass> typesOfClass = it.getTypesOfClass();
 	        		for(Map.Entry<type, TypeOfClass> entry : typesOfClass.entrySet()) {
 	        										//nazwa         ///typ						///ocena
